@@ -1,5 +1,5 @@
 
-//% weight=10 color=#31C7D5 icon="\uf1b5" block="PDBoard"
+//% weight=10 color=#31C7D5 icon="\uf6b5" block="PDBoard"
 
 namespace PDBoard {
     export enum Motors {
