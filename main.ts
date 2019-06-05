@@ -80,10 +80,18 @@ namespace HaodaBit {
     //% weight=100
     //% degree.min=0 degree.max=180
     export function servo(pin: AnalogPin, degree: number): void {
- 
+
         let v_us = (degree * 10 + 600) // 0.6ms ~ 2.4ms
         let value = v_us * 4095 / (1000000 / 100)
         pins.analogWritePin(pin, value)
+    }
+
+    //% blockId=motor_servo block="初始化RGB共|%dnum|个在|%pin"
+    //% weight=100
+    export function DRGB(Dnum:number,pin: AnalogPin): void {
+
+
+        
     }
 
 
