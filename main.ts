@@ -1,17 +1,33 @@
 
-//% weight=10 color=#31C7D5 icon="\f6b5" block="zztest"
+//% weight=10 color=#CA8EFF icon="\uf013" block="testbit"
 
-namespace PDBoard {
+namespace HaodaBit {
+
+
+
     export enum Motors {
-        //%blockId=PDBoard_motordriver_motor_one
-        //% block="A"
+        //%blockId=HaodaBit_motordriver_motor_one
+        //% block="MA"
         Motor1,
-        //%blockId=PDBoard_motordriver_motor_two
-        //% block="B"
+        //%blockId=HaodaBit_motordriver_motor_two
+        //% block="MB"
         Motor2
     }
 
     let distanceBuf = 0;
+
+    /**
+    * The user can select the 8 steering gear controller.
+    */
+
+    export enum ssd {
+        S0 = DigitalPin.P0,
+        S1 = DigitalPin.P1,
+        S2 = DigitalPin.P2,
+        S8 = DigitalPin.P8,
+        S12 = DigitalPin.P12,
+        S16 = DigitalPin.P16
+    }
 
     function i2cwrite(addr: number, reg: number, value: number) {
         let buf = pins.createBuffer(2)
@@ -42,6 +58,7 @@ namespace PDBoard {
     export function Ultrasonic(pin: DigitalPin): number {
 
         // send pulse
+
         pins.setPull(pin, PinPullMode.PullNone);
         pins.digitalWritePin(pin, 0);
         control.waitMicros(2);
@@ -58,6 +75,15 @@ namespace PDBoard {
         }
         distanceBuf = d;
         return Math.floor(ret * 10 / 6 / 58);
+    }
+    //% blockId=motor_servo block="舵机|%pin|转动角度|%degree"
+    //% weight=100
+    //% degree.min=0 degree.max=180
+    export function servo(pin: AnalogPin, degree: number): void {
+ 
+        let v_us = (degree * 10 + 600) // 0.6ms ~ 2.4ms
+        let value = v_us * 4095 / (1000000 / 100)
+        pins.analogWritePin(pin, value)
     }
 
 
