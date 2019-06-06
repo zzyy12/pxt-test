@@ -1,18 +1,4 @@
 
-enum ssd {
-    //% block=S0
-    S0 = DigitalPin.P0,
-    //% block=S1
-    S1 = DigitalPin.P1,
-    //% block=S2
-    S2 = DigitalPin.P2,
-    //% block=S3
-    S8 = DigitalPin.P8,
-    //% block=S4
-    S12 = DigitalPin.P12,
-    //% block=S5
-    S16 = DigitalPin.P16
-}
 
 //% weight=10 color=#CA8EFF icon="\uf013" block="testbit"
 namespace HaodaBit {
@@ -91,9 +77,23 @@ namespace HaodaBit {
         pins.servoSetPulse(pin, value)
     }
 
-    //% blockId=color_RGB block="初始化RGB共|%dnum|个在|%pin"
+    //% blockId=sset_RGB block="初始化RGB共|%dnum|个在|%pin"
     //% weight=100
     export function drgb(dnum: number, pin: DigitalPin, ): void {
+
+
+    }
+
+    //% blockId=color1_RGB block="第|%dnum|个RGB写入(0~255)R|%rnum|G|%gnum|B|%bnum|在|%pin"
+    //% weight=100
+    export function ddrgb(dnum: number, pin: DigitalPin, ): void {
+
+
+    }
+
+    //% blockId=color2_RGB block="第|%dnum|个RGB写入 %rgb=neopixel_colors|亮度为|%light|在|%pin"
+    //% weight=100
+    export function dddrgb(dnum: number, pin: DigitalPin, ): void {
 
 
     }
