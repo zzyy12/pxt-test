@@ -1,44 +1,6 @@
 
 //% weight=10 color=#CA8EFF icon="\uf013" block="testbit"
 
-/**
-   * Well known colors for a NeoPixel strip
-   */
-enum HaodaPixelColors {
-    //% block=red
-    Red = 0xFF0000,
-    //% block=orange
-    Orange = 0xFFA500,
-    //% block=yellow
-    Yellow = 0xFFFF00,
-    //% block=green
-    Green = 0x00FF00,
-    //% block=blue
-    Blue = 0x0000FF,
-    //% block=indigo
-    Indigo = 0x4b0082,
-    //% block=violet
-    Violet = 0x8a2be2,
-    //% block=purple
-    Purple = 0xFF00FF,
-    //% block=white
-    White = 0xFFFFFF,
-    //% block=black
-    Black = 0x000000
-}
-
-/**
- * Different modes for RGB or RGB+W NeoPixel strips
- */
-enum NeoPixelMode {
-    //% block="RGB (GRB format)"
-    RGB = 0,
-    //% block="RGB+W"
-    RGBW = 1,
-    //% block="RGB (RGB format)"
-    RGB_RGB = 2
-}
-
 enum ssd {
     //% block=S0
     S0 = DigitalPin.P0,
