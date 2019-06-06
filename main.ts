@@ -113,9 +113,9 @@ namespace HaodaBit {
 
     }
 
-    //% blockId=color2_RGB block="第|%dnum|个RGB写入 %rgb=neopixel_colors|亮度为|%light|在|%pin"
-    //% weight=100
-    export function dddrgb(dnum: number, light: number, pin: DigitalPin, ): void {
+    //% blockId=color2_RGB block="第|%dnum|个RGB写入 %rgb=neopixel_colors|在|%pin"
+    //% weight=200
+    export function dddrgb(dnum: number, lnum: number, pin: DigitalPin, ): void {
 
 
     }
