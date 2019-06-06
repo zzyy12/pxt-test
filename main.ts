@@ -86,7 +86,7 @@ namespace HaodaBit {
         pins.analogWritePin(pin, value)
     }
 
-    //% blockId=motor_servo block="初始化RGB共|%dnum|个在|%pin"
+    //% blockId=setRGB block="初始化RGB共|%dnum|个在|%pin"
     //% weight=100
     export function DRGB(Dnum:number,pin: AnalogPin): void {
 
