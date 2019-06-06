@@ -83,15 +83,15 @@ namespace HaodaBit {
 
         let v_us = (degree * 10 + 600) // 0.6ms ~ 2.4ms
         let value = v_us * 4095 / (1000000 / 100)
-        pins.analogWritePin(pin, value)
+        pins.servoSetPulse(pin, value)
     }
 
     //% blockId=setRGB block="初始化RGB共|%dnum|个在|%pin"
     //% weight=100
-    export function DRGB(Dnum:number,pin: AnalogPin): void {
+    export function DRGB(Dnum: number, pin: AnalogPin): void {
 
 
-        
+
     }
 
 
