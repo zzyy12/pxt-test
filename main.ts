@@ -1,4 +1,26 @@
 
+enum NeoPixelColors {
+    //% block=red
+    Red = 0xFF0000,
+    //% block=orange
+    Orange = 0xFFA500,
+    //% block=yellow
+    Yellow = 0xFFFF00,
+    //% block=green
+    Green = 0x00FF00,
+    //% block=blue
+    Blue = 0x0000FF,
+    //% block=indigo
+    Indigo = 0x4b0082,
+    //% block=violet
+    Violet = 0x8a2be2,
+    //% block=purple
+    Purple = 0xFF00FF,
+    //% block=white
+    White = 0xFFFFFF,
+    //% block=black
+    Black = 0x000000
+}
 
 //% weight=10 color=#CA8EFF icon="\uf013" block="testbit"
 namespace HaodaBit {
@@ -86,14 +108,14 @@ namespace HaodaBit {
 
     //% blockId=color1_RGB block="第|%dnum|个RGB写入(0~255)R|%rnum|G|%gnum|B|%bnum|在|%pin"
     //% weight=100
-    export function ddrgb(dnum: number, pin: DigitalPin, ): void {
+    export function ddrgb(dnum: number, rnum: number, gnum: number, bnum: number,pin: DigitalPin, ): void {
 
 
     }
 
     //% blockId=color2_RGB block="第|%dnum|个RGB写入 %rgb=neopixel_colors|亮度为|%light|在|%pin"
     //% weight=100
-    export function dddrgb(dnum: number, pin: DigitalPin, ): void {
+    export function dddrgb(dnum: number, light: number, pin: DigitalPin, ): void {
 
 
     }
