@@ -135,9 +135,9 @@ namespace HaodaBit {
     //% weight=100
     export function drgb(dnum: number, pin: DigitalPin, ): void {
 
-     
+
     }
 
 
-
 }
+
