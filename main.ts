@@ -91,7 +91,7 @@ namespace HaodaBit {
         pins.servoSetPulse(pin, value)
     }
 
-    //% blockId=motor_servo block="初始化RGB共|%dnum|个在|%pin"
+    //% blockId=color_RGB block="初始化RGB共|%dnum|个在|%pin"
     //% weight=100
     export function drgb(dnum: number, pin: DigitalPin, ): void {
 
