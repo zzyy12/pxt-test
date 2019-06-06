@@ -1,6 +1,4 @@
 
-//% weight=10 color=#CA8EFF icon="\uf013" block="testbit"
-
 enum ssd {
     //% block=S0
     S0 = DigitalPin.P0,
@@ -16,7 +14,7 @@ enum ssd {
     S16 = DigitalPin.P16
 }
 
-
+//% weight=10 color=#CA8EFF icon="\uf013" block="testbit"
 namespace HaodaBit {
 
     export enum Motors {
