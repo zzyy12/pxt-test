@@ -6,12 +6,9 @@ namespace HaodaBit {
 
 
     const PortDigital = [
-        DigitalPin.P0,
-        DigitalPin.P1,
-        DigitalPin.P2,
-        DigitalPin.P8,
-        DigitalPin.P12,
-        DigitalPin.P16
+
+        DigitalPin.P8
+
     ]
 
     const PortAnalog = [
@@ -24,12 +21,8 @@ namespace HaodaBit {
     ]
 
     export enum Ports {
-        P0 = 0,
-        P1 = 1,
-        P2 = 2,
-        P8 = 3,
-        P12 = 4,
-        P16 = 5
+        P0 = 0
+
     }
 
     export enum DHT11Type {
@@ -160,6 +153,7 @@ namespace HaodaBit {
     //% weight=60
     //% group="Environment" blockGap=50
     export function DHT11(port: Ports, readtype: DHT11Type): number {
+
         let pin = PortDigital[port]
 
         // todo: get pinname in ts
