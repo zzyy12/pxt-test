@@ -157,8 +157,8 @@ namespace HaodaBit {
         let pin = PortDigital[port]
 
         // todo: get pinname in ts
-        //let value = (dht11Update(pin - 7) >> 0)
-        let value = 1000
+        let value = (dht11Update(pin - 7) >> 0)
+
 
         if (value != 0) {
             dht11Temp = (value & 0x0000ff00) >> 8;
