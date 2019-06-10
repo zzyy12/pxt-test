@@ -14,6 +14,15 @@ namespace HaodaBit {
         DigitalPin.P16
     ]
 
+    const PortAnalog = [
+        AnalogPin.P0,
+        AnalogPin.P1,
+        AnalogPin.P2,
+        AnalogPin.P8,
+        AnalogPin.P12,
+        AnalogPin.P16
+    ]
+
     export enum Ports {
         P0 = 0,
         P1 = 1,
@@ -96,7 +105,7 @@ namespace HaodaBit {
      */
     //% block="电机 %motor|速度 %speed"
     //% speed.min=-100 speed.max=100
-     //% group="Actuator" name.fieldEditor="gridpicker" name.fieldOptions.columns=4
+    //% group="Actuator" name.fieldEditor="gridpicker" name.fieldOptions.columns=4
     export function MotorRun(motor: Motors, speed: number) {
         switch (motor) {
             case Motors.Motor1:
@@ -138,18 +147,20 @@ namespace HaodaBit {
     //% blockId=motor_servo block="舵机|%pin|转动角度|%degree"
     //% weight=100
     //% degree.min=0 degree.max=180
-     //% group="Actuator" name.fieldEditor="gridpicker" name.fieldOptions.columns=4
-    export function servo(pin: AnalogPin, degree: number): void {
+    //% group="Actuator" name.fieldEditor="gridpicker" name.fieldOptions.columns=4
+    export function servo(pin: Ports, degree: number): void {
+
+        let port = PortAnalog[pin]
 
         let value = (0.5 + degree / 90) * 1000
-        pins.servoSetPulse(pin, value)
+        pins.servoSetPulse(port, value)
     }
 
     //% blockId=powerbrick_dht11 block="DHT11|port %port|type %readtype"
     //% weight=60
     //% group="Environment" blockGap=50
     export function DHT11(port: Ports, readtype: DHT11Type): number {
-        let pin = PortDigital [port]
+        let pin = PortDigital[port]
 
         // todo: get pinname in ts
         let value = (dht11Update(pin - 7) >> 0)
