@@ -15,12 +15,12 @@ namespace HaodaBit {
     ]
 
     export enum Ports {
-        PORT1 = 0,
-        PORT2 = 1,
-        PORT3 = 2,
-        PORT4 = 3,
-        PORT5 = 4,
-        PORT6 = 5
+        P0 = 0,
+        P1 = 1,
+        P2 = 2,
+        P8 = 3,
+        P12 = 4,
+        P16 = 5
     }
 
     export enum DHT11Type {
@@ -113,19 +113,20 @@ namespace HaodaBit {
     //% blockId=funbit_ultrasonic block="超声波|管脚 %pin"
     //% weight=10
     //% group="Ultrasonic/Mic" blockGap=50
-    export function Ultrasonic(pin: DigitalPin): number {
+    export function Ultrasonic(pin: Ports): number {
 
         // send pulse
+        let port = PortDigital[pin]
 
-        pins.setPull(pin, PinPullMode.PullNone);
-        pins.digitalWritePin(pin, 0);
+        pins.setPull(port, PinPullMode.PullNone);
+        pins.digitalWritePin(port, 0);
         control.waitMicros(2);
-        pins.digitalWritePin(pin, 1);
+        pins.digitalWritePin(port, 1);
         control.waitMicros(10);
-        pins.digitalWritePin(pin, 0);
+        pins.digitalWritePin(port, 0);
 
         // read pulse
-        let d = pins.pulseIn(pin, PulseValue.High, 25000);
+        let d = pins.pulseIn(port, PulseValue.High, 25000);
         let ret = d;
         // filter timeout spikes
         if (ret == 0 && distanceBuf != 0) {
