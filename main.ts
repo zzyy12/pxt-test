@@ -52,7 +52,7 @@ namespace HaodaBit {
         Humidity = 2
     }
 
-    //% shim=HaodaBit::dht11Update
+    //% shim=powerbrick::dht11Update
     function dht11Update(pin: number): number {
         return 999;
     }
