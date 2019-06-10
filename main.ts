@@ -1,4 +1,41 @@
 
+/**
+ * Well known colors for a NeoPixel strip
+ */
+enum NeoPixelColors {
+    //% block=red
+    Red = 0xFF0000,
+    //% block=orange
+    Orange = 0xFFA500,
+    //% block=yellow
+    Yellow = 0xFFFF00,
+    //% block=green
+    Green = 0x00FF00,
+    //% block=blue
+    Blue = 0x0000FF,
+    //% block=indigo
+    Indigo = 0x4b0082,
+    //% block=violet
+    Violet = 0x8a2be2,
+    //% block=purple
+    Purple = 0xFF00FF,
+    //% block=white
+    White = 0xFFFFFF,
+    //% block=black
+    Black = 0x000000
+}
+
+/**
+ * Different modes for RGB or RGB+W NeoPixel strips
+ */
+enum NeoPixelMode {
+    //% block="RGB (GRB format)"
+    RGB = 0,
+    //% block="RGB+W"
+    RGBW = 1,
+    //% block="RGB (RGB format)"
+    RGB_RGB = 2
+}
 
 //% weight=10 color=#CA8EFF icon="\uf013" block="testbit"
 namespace HaodaBit {
@@ -77,25 +114,7 @@ namespace HaodaBit {
         pins.servoSetPulse(pin, value)
     }
 
-    //% blockId=sset_RGB block="初始化RGB共|%dnum|个在|%pin"
-    //% weight=100
-    export function drgb(dnum: number, pin: DigitalPin, ): void {
 
-
-    }
-
-    //% blockId=color1_RGB block="第|%dnum|个RGB写入(0~255)R|%rnum|G|%gnum|B|%bnum|在|%pin"
-    //% weight=100
-    export function ddrgb(dnum: number, rnum: number, gnum: number, bnum: number,pin: DigitalPin, ): void {
-
-
-    }
-     /** 
-    * //% blockId=color2_RGB block="第|%dnum|个RGB写入 %rgb=neopixel_colors|在|%pin"
-    * //% weight=200
-    * export function dddrgb(dnum: number, lnum: number, pin: DigitalPin, ): void {
-    *  }
-    */
 
 }
 
