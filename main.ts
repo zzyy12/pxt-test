@@ -114,7 +114,7 @@ namespace HaodaBit {
         pins.servoSetPulse(pin, value)
     }
 
-  //% shim=sendBufferAsm
+    //% shim=sendBufferAsm
     function sendBuffer(buf: Buffer, pin: DigitalPin) {
     }
 
@@ -139,7 +139,7 @@ namespace HaodaBit {
          */
         //% blockId="HaodaBit_set_strip_color" block="%strip|show color %rgb=HaodaBit_colors" 
         //% weight=85 blockGap=8
-        //% parts="HaodaBit"
+        //% parts="neopixel"
         showColor(rgb: number) {
             rgb = rgb >> 0;
             this.setAllRGB(rgb);
@@ -153,7 +153,7 @@ namespace HaodaBit {
          */
         //% blockId="HaodaBit_set_strip_rainbow" block="%strip|show rainbow from %startHue|to %endHue" 
         //% weight=85 blockGap=8
-        //% parts="HaodaBit"
+        //% parts="neopixel"
         showRainbow(startHue: number = 1, endHue: number = 360) {
             if (this._length <= 0) return;
 
@@ -220,7 +220,7 @@ namespace HaodaBit {
         //% weight=84
         //% blockId=HaodaBit_show_bar_graph block="%strip|show bar graph of %value|up to %high" 
         //% icon="\uf080"
-        //% parts="HaodaBit"
+        //% parts="neopixel"
         showBarGraph(value: number, high: number): void {
             if (high <= 0) {
                 this.clear();
@@ -258,7 +258,7 @@ namespace HaodaBit {
         //% blockId="HaodaBit_set_pixel_color" block="%strip|set pixel color at %pixeloffset|to %rgb=HaodaBit_colors" 
         //% blockGap=8
         //% weight=80
-        //% parts="HaodaBit" advanced=true
+        //% parts="neopixel" advanced=true
         setPixelColor(pixeloffset: number, rgb: number): void {
             this.setPixelRGB(pixeloffset >> 0, rgb >> 0);
         }
@@ -272,7 +272,7 @@ namespace HaodaBit {
         //% blockId=HaodaBit_set_matrix_width block="%strip|set matrix width %width|rotation %rotation|chain %chain"
         //% blockGap=8
         //% weight=5
-        //% parts="HaodaBit" advanced=true
+        //% parts="neopixel" advanced=true
         setMatrixWidth(width: number, rotation: number, chain: number) {
             this._matrixWidth = Math.min(this._length, width >> 0);
             this._matrixRotation = rotation >> 0;
@@ -288,7 +288,7 @@ namespace HaodaBit {
          */
         //% blockId="HaodaBit_set_matrix_color" block="%strip|set matrix color at x %x|y %y|to %rgb=HaodaBit_colors" 
         //% weight=4
-        //% parts="HaodaBit" advanced=true
+        //% parts="neopixel" advanced=true
         setMatrixColor(x: number, y: number, rgb: number) {
             if (this._matrixWidth <= 0) return; // not a matrix, ignore
             x = x >> 0;
@@ -323,7 +323,7 @@ namespace HaodaBit {
         //% blockId="HaodaBit_set_pixel_white" block="%strip|set pixel white LED at %pixeloffset|to %white" 
         //% blockGap=8
         //% weight=80
-        //% parts="HaodaBit" advanced=true
+        //% parts="neopixel" advanced=true
         setPixelWhiteLED(pixeloffset: number, white: number): void {
             if (this._mode === HaodaBitMode.RGBW) {
                 this.setPixelW(pixeloffset >> 0, white >> 0);
@@ -336,7 +336,7 @@ namespace HaodaBit {
          */
         //% blockId="HaodaBit_show" block="%strip|show" blockGap=8
         //% weight=79
-        //% parts="HaodaBit"
+        //% parts="neopixel"
         show() {
             sendBuffer(this.buf, this.pin);
         }
@@ -347,7 +347,7 @@ namespace HaodaBit {
          */
         //% blockId="HaodaBit_clear" block="%strip|clear"
         //% weight=76
-        //% parts="HaodaBit"
+        //% parts="neopixel"
         clear(): void {
             const stride = this._mode === HaodaBitMode.RGBW ? 4 : 3;
             this.buf.fill(0, this.start * stride, this._length * stride);
@@ -368,7 +368,7 @@ namespace HaodaBit {
          */
         //% blockId="HaodaBit_set_brightness" block="%strip|set brightness %brightness" blockGap=8
         //% weight=59
-        //% parts="HaodaBit" advanced=true
+        //% parts="neopixel" advanced=true
         setBrightness(brightness: number): void {
             this.brightness = brightness & 0xff;
         }
@@ -378,7 +378,7 @@ namespace HaodaBit {
          **/
         //% blockId="HaodaBit_each_brightness" block="%strip|ease brightness" blockGap=8
         //% weight=58
-        //% parts="HaodaBit" advanced=true
+        //% parts="neopixel" advanced=true
         easeBrightness(): void {
             const stride = this._mode === HaodaBitMode.RGBW ? 4 : 3;
             const br = this.brightness;
@@ -408,7 +408,7 @@ namespace HaodaBit {
          */
         //% weight=89
         //% blockId="HaodaBit_range" block="%strip|range from %start|with %length|leds"
-        //% parts="HaodaBit"
+        //% parts="neopixel"
         //% blockSetVariable=range
         range(start: number, length: number): Strip {
             start = start >> 0;
@@ -431,7 +431,7 @@ namespace HaodaBit {
          */
         //% blockId="HaodaBit_shift" block="%strip|shift pixels by %offset" blockGap=8
         //% weight=40
-        //% parts="HaodaBit"
+        //% parts="neopixel"
         shift(offset: number = 1): void {
             offset = offset >> 0;
             const stride = this._mode === HaodaBitMode.RGBW ? 4 : 3;
@@ -445,7 +445,7 @@ namespace HaodaBit {
          */
         //% blockId="HaodaBit_rotate" block="%strip|rotate pixels by %offset" blockGap=8
         //% weight=39
-        //% parts="HaodaBit"
+        //% parts="neopixel"
         rotate(offset: number = 1): void {
             offset = offset >> 0;
             const stride = this._mode === HaodaBitMode.RGBW ? 4 : 3;
@@ -456,7 +456,7 @@ namespace HaodaBit {
          * Set the pin where the neopixel is connected, defaults to P0.
          */
         //% weight=10
-        //% parts="HaodaBit" advanced=true
+        //% parts="neopixel" advanced=true
         setPin(pin: DigitalPin): void {
             this.pin = pin;
             pins.digitalWritePin(this.pin, 0);
@@ -571,7 +571,7 @@ namespace HaodaBit {
      */
     //% blockId="HaodaBit_create" block="NeoPixel at pin %pin|with %numleds|leds as %mode"
     //% weight=90 blockGap=8
-    //% parts="HaodaBit"
+    //% parts="neopixel"
     //% trackArgs=0,2
     //% blockSetVariable=strip
     export function create(pin: DigitalPin, numleds: number, mode: HaodaBitMode): Strip {
