@@ -1,4 +1,13 @@
 
+/*
+Riven
+Microbit powerbrick extension board
+load dependency
+"powerbrick": "file:../pxt-powerbrick"
+dht11 port from MonadnockSystems/pxt-dht11
+rgb pixel port from Microsoft/pxt-neopixel
+*/
+
 //% weight=10 color=#CA8EFF icon="\uf013" block="testbit"
 //% groups='["Ultrasonic/Mic", "Linefollower", "Environment", "Actuator", "Mp3", "RGB"]'
 namespace HaodaBit {
@@ -6,8 +15,12 @@ namespace HaodaBit {
 
 
     const PortDigital = [
-
-        DigitalPin.P8
+        DigitalPin.P0,
+        DigitalPin.P1,
+        DigitalPin.P2,
+        DigitalPin.P8,
+        DigitalPin.P12,
+        DigitalPin.P16
 
     ]
 
@@ -21,7 +34,12 @@ namespace HaodaBit {
     ]
 
     export enum Ports {
-        P0 = 0
+        P0 = 0,
+        P1 = 1,
+        P2 = 2,
+        P8 = 3,
+        P12 = 4,
+        P16 = 5,
 
     }
 
