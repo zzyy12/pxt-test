@@ -73,13 +73,13 @@ namespace HaodaBit {
 
     export enum PrevNext {
         //% block=play
-        Play = 0x0d,
+        播放 = 0x0d,
         //% block=stop
-        Stop = 0x0e,
+        停止 = 0x0e,
         //% block=next
-        Next = 0x01,
+        下一首 = 0x01,
         //% block=prev
-        Prev = 0x02
+        上一首 = 0x02
     }
 
     //% shim=powerbrick::dht11Update
