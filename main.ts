@@ -211,7 +211,7 @@ namespace HaodaBit {
     //% blockId=powerbrick_dht11 block="读 DHT11| %readtype|在 %port"
     //% weight=60
     //% group="Environment" blockGap=50
-    export function DHT11(port: Ports, readtype: DHT11Type): number {
+    export function DHT11( readtype: DHT11Type,port: Ports1): number {
 
         let pin = PortDigital[port]
 
