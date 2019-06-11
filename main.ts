@@ -33,6 +33,15 @@ namespace HaodaBit {
         AnalogPin.P16
     ]
 
+    const PortSerial = [
+        SerialPin.P0,
+        SerialPin.P1,
+        SerialPin.P2,
+        SerialPin.P8,
+        SerialPin.P12,
+        SerialPin.P16
+    ]
+
     export enum Ports {
         P0 = 0,
         P1 = 1,
@@ -50,6 +59,17 @@ namespace HaodaBit {
         TemperatureF = 1,
         //% block=humidity
         Humidity = 2
+    }
+
+    export enum PrevNext {
+        //% block=play
+        Play = 0xaa,
+        //% block=stop
+        Stop = 0xab,
+        //% block=next
+        Next = 0xac,
+        //% block=prev
+        Prev = 0xad
     }
 
     //% shim=powerbrick::dht11Update
@@ -189,7 +209,89 @@ namespace HaodaBit {
         } else {
             return dht11Humi;
         }
+
+        
     }
+
+    function calcSum(buf: Buffer, start: number, end: number): number {
+        let sum = 0;
+        for (let i = start; i <= end; i++) {
+            sum += buf[i];
+        }
+        return sum;
+    }
+
+    //% blockId=powerbrick_mp3_connect block="MP3 Connect|port %port"
+    //% group="MP3" weight=39
+    export function MP3Connect(port: Ports): void {
+        let pin = PortSerial[port]
+        // todo: fiber may freeze on steam reading
+        serial.redirect(pin, SerialPin.P16, BaudRate.BaudRate9600)
+    }
+
+    //% blockId=powerbrick_mp3_play block="MP3 Play|%PrevNext"
+    //% group="MP3" weight=38
+    export function MP3Play(pn: PrevNext): void {
+        let buf = pins.createBuffer(5);
+        buf[0] = 0x7e;
+        buf[1] = 0x03;
+        buf[2] = pn;
+        buf[3] = buf[1] + buf[2];
+        buf[4] = 0xef;
+        serial.writeBuffer(buf)
+    }
+
+    //% blockId=powerbrick_mp3_volumn block="MP3 Volumn|%volumn"
+    //% volumn.min=0 volumn.max=31
+    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
+    //% group="MP3" weight=37
+    export function MP3Volumn(volumn: number): void {
+        let buf = pins.createBuffer(6);
+        buf[0] = 0x7e;
+        buf[1] = 0x04;
+        buf[2] = 0xae;
+        buf[3] = volumn;
+        buf[4] = calcSum(buf, 1, 3);
+        buf[5] = 0xef;
+        serial.writeBuffer(buf)
+    }
+
+    //% blockId=powerbrick_mp3_playindex block="MP3 Play Index|%index"
+    //% group="MP3" weight=37
+    export function MP3PlayIndex(index: number): void {
+        let buf = pins.createBuffer(7);
+        if (index == 0) {
+            index = 1;
+        }
+        buf[0] = 0x7e;
+        buf[1] = 0x05;
+        buf[2] = 0xa2;
+        buf[3] = 0;
+        buf[4] = index;
+        buf[5] = calcSum(buf, 1, 4);
+        buf[6] = 0xef;
+        serial.writeBuffer(buf)
+    }
+
+    //% blockId=powerbrick_mp3_playname block="MP3 Play Name|%name"
+    //% weight=36
+    //% group="MP3" blockGap=50
+    export function MP3PlayName(str: string): void {
+        let len = str.length;
+        if (len > 8) len = 8;
+        let buf = pins.createBuffer(len + 5);
+        buf[0] = 0x7e;
+        buf[1] = len + 3;
+        buf[2] = 0xa3;
+        for (let i = 0; i < len; i++) {
+            buf[3 + i] = str.charCodeAt(i);
+        }
+        buf[len + 3] = calcSum(buf, 1, len + 2);
+        buf[len + 4] = 0xef;
+        serial.writeBuffer(buf)
+    }
+
+
 
 
 }
