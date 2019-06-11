@@ -210,7 +210,7 @@ namespace HaodaBit {
             return dht11Humi;
         }
 
-        
+
     }
 
     function calcSum(buf: Buffer, start: number, end: number): number {
@@ -232,12 +232,15 @@ namespace HaodaBit {
     //% blockId=powerbrick_mp3_play block="MP3 Play|%PrevNext"
     //% group="MP3" weight=38
     export function MP3Play(pn: PrevNext): void {
-        let buf = pins.createBuffer(5);
+        let buf = pins.createBuffer(8);
         buf[0] = 0x7e;
-        buf[1] = 0x03;
-        buf[2] = pn;
-        buf[3] = buf[1] + buf[2];
-        buf[4] = 0xef;
+        buf[1] = 0xFF;
+        buf[2] = 0X06;
+        buf[3] = 0x11;
+        buf[4] = 0x00;
+        buf[5] = 0x00;
+        buf[6] = 0x01;
+        buf[7] = 0xef;
         serial.writeBuffer(buf)
     }
 
