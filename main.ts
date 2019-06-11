@@ -63,13 +63,13 @@ namespace HaodaBit {
 
     export enum PrevNext {
         //% block=play
-        Play = 0xaa,
+        Play = 0x0d,
         //% block=stop
-        Stop = 0xab,
+        Stop = 0x0e,
         //% block=next
-        Next = 0xac,
+        Next = 0x01,
         //% block=prev
-        Prev = 0xad
+        Prev = 0x02
     }
 
     //% shim=powerbrick::dht11Update
@@ -210,7 +210,7 @@ namespace HaodaBit {
             return dht11Humi;
         }
 
-
+        
     }
 
     function calcSum(buf: Buffer, start: number, end: number): number {
@@ -236,10 +236,10 @@ namespace HaodaBit {
         buf[0] = 0x7e;
         buf[1] = 0xFF;
         buf[2] = 0X06;
-        buf[3] = 0x11;
-        buf[4] = 0x00;
-        buf[5] = 0x00;
-        buf[6] = 0x01;
+        buf[3] = pn;
+		buf[4] = 0x00;
+		buf[5] = 0x00;
+		buf[6] = 0x00;
         buf[7] = 0xef;
         serial.writeBuffer(buf)
     }
@@ -251,12 +251,13 @@ namespace HaodaBit {
     export function MP3Volumn(volumn: number): void {
         let buf = pins.createBuffer(6);
         buf[0] = 0x7e;
-        buf[1] = 0x04;
-        buf[2] = 0xae;
-        buf[3] = volumn;
-        buf[4] = calcSum(buf, 1, 3);
-        buf[5] = 0xef;
-        serial.writeBuffer(buf)
+        buf[1] = 0xff;
+        buf[2] = 0x06;
+        buf[3] = 0x12;
+        buf[4] = 0x00;
+        buf[5] = 0x00;
+		buf[6] = volumn;
+        buf[7] = 0xef;
     }
 
     //% blockId=powerbrick_mp3_playindex block="MP3 Play Index|%index"
@@ -272,28 +273,12 @@ namespace HaodaBit {
         buf[3] = 0x12;
         buf[4] = 0x00;
         buf[5] = 0x00;
-        buf[6] = index;
+		buf[6] = index;
         buf[7] = 0xef;
         serial.writeBuffer(buf)
     }
 
-    //% blockId=powerbrick_mp3_playname block="MP3 Play Name|%name"
-    //% weight=36
-    //% group="MP3" blockGap=50
-    export function MP3PlayName(str: string): void {
-        let len = str.length;
-        if (len > 8) len = 8;
-        let buf = pins.createBuffer(len + 5);
-        buf[0] = 0x7e;
-        buf[1] = len + 3;
-        buf[2] = 0xa3;
-        for (let i = 0; i < len; i++) {
-            buf[3 + i] = str.charCodeAt(i);
-        }
-        buf[len + 3] = calcSum(buf, 1, len + 2);
-        buf[len + 4] = 0xef;
-        serial.writeBuffer(buf)
-    }
+
 
 
 
