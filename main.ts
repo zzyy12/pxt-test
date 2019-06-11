@@ -210,7 +210,7 @@ namespace HaodaBit {
             return dht11Humi;
         }
 
-        
+
     }
 
     function calcSum(buf: Buffer, start: number, end: number): number {
@@ -237,9 +237,9 @@ namespace HaodaBit {
         buf[1] = 0xFF;
         buf[2] = 0X06;
         buf[3] = pn;
-		buf[4] = 0x00;
-		buf[5] = 0x00;
-		buf[6] = 0x00;
+        buf[4] = 0x00;
+        buf[5] = 0x00;
+        buf[6] = 0x00;
         buf[7] = 0xef;
         serial.writeBuffer(buf)
     }
@@ -253,10 +253,10 @@ namespace HaodaBit {
         buf[0] = 0x7e;
         buf[1] = 0xff;
         buf[2] = 0x06;
-        buf[3] = 0x12;
+        buf[3] = 0x06;
         buf[4] = 0x00;
         buf[5] = 0x00;
-		buf[6] = volumn;
+        buf[6] = volumn;
         buf[7] = 0xef;
     }
 
@@ -273,7 +273,7 @@ namespace HaodaBit {
         buf[3] = 0x12;
         buf[4] = 0x00;
         buf[5] = 0x00;
-		buf[6] = index;
+        buf[6] = index;
         buf[7] = 0xef;
         serial.writeBuffer(buf)
     }
