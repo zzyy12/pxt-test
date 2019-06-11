@@ -52,6 +52,16 @@ namespace HaodaBit {
 
     }
 
+    export enum Ports1 {
+        P0 = 0,
+        P1 = 1,
+        P2 = 2
+
+
+    }
+
+
+
     export enum DHT11Type {
         //% block=temperature(°C)
         TemperatureC = 0,
@@ -187,7 +197,18 @@ namespace HaodaBit {
         pins.servoSetPulse(port, value)
     }
 
-    //% blockId=powerbrick_dht11 block="DHT11|port %port|type %readtype"
+    //% blockId=LM35_server block="读取LM35温度在|%pin"
+    //% weight=100
+    //% group="Environment" blockGap=50
+    export function server_lm35(pin: Ports1): number {
+
+        let port = PortAnalog[pin]
+        let vas = pins.analogReadPin(port)
+        let value = (125 * vas) >> 8
+        return value;
+    }
+
+    //% blockId=powerbrick_dht11 block="读 DHT11|type %readtype|在 %port"
     //% weight=60
     //% group="Environment" blockGap=50
     export function DHT11(port: Ports, readtype: DHT11Type): number {
@@ -221,7 +242,7 @@ namespace HaodaBit {
         return sum;
     }
 
-    //% blockId=powerbrick_mp3_connect block="MP3 Connect|port %port"
+    //% blockId=powerbrick_mp3_connect block="MP3 初始化|在 %port"
     //% group="MP3" weight=39
     export function MP3Connect(port: Ports): void {
         let pin = PortSerial[port]
@@ -229,7 +250,7 @@ namespace HaodaBit {
         serial.redirect(pin, SerialPin.P16, BaudRate.BaudRate9600)
     }
 
-    //% blockId=powerbrick_mp3_play block="MP3 Play|%PrevNext"
+    //% blockId=powerbrick_mp3_play block="MP3 |%PrevNext"
     //% group="MP3" weight=38
     export function MP3Play(pn: PrevNext): void {
         let buf = pins.createBuffer(8);
@@ -244,7 +265,7 @@ namespace HaodaBit {
         serial.writeBuffer(buf)
     }
 
-    //% blockId=powerbrick_mp3_volumn block="MP3 Volumn|%volumn"
+    //% blockId=powerbrick_mp3_volumn block="MP3 播放音量|%volumn"
     //% volumn.min=0 volumn.max=31
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
     //% group="MP3" weight=37
@@ -260,7 +281,7 @@ namespace HaodaBit {
         buf[7] = 0xef;
     }
 
-    //% blockId=powerbrick_mp3_playindex block="MP3 Play Index|%index"
+    //% blockId=powerbrick_mp3_playindex block="MP3 播放曲目|%index"
     //% group="MP3" weight=37
     export function MP3PlayIndex(index: number): void {
         let buf = pins.createBuffer(7);
