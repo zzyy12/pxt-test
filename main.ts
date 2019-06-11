@@ -208,7 +208,7 @@ namespace HaodaBit {
         return value;
     }
 
-    //% blockId=powerbrick_dht11 block="读 DHT11|type %readtype|在 %port"
+    //% blockId=powerbrick_dht11 block="读 DHT11| %readtype|在 %port"
     //% weight=60
     //% group="Environment" blockGap=50
     export function DHT11(port: Ports, readtype: DHT11Type): number {
