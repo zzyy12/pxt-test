@@ -267,12 +267,13 @@ namespace HaodaBit {
             index = 1;
         }
         buf[0] = 0x7e;
-        buf[1] = 0x05;
-        buf[2] = 0xa2;
-        buf[3] = 0;
-        buf[4] = index;
-        buf[5] = calcSum(buf, 1, 4);
-        buf[6] = 0xef;
+        buf[1] = 0xff;
+        buf[2] = 0x06;
+        buf[3] = 0x12;
+        buf[4] = 0x00;
+        buf[5] = 0x00;
+        buf[6] = index;
+        buf[7] = 0xef;
         serial.writeBuffer(buf)
     }
 
