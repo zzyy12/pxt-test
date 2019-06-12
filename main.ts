@@ -264,6 +264,15 @@ namespace HaodaBit {
         }
     }
 
+    //% weight=20
+    //% blockId=motor_motorStop block=电机停止|%index"
+    //% index.fieldEditor="gridpicker" index.fieldOptions.columns=2 
+    //% group="Actuator" name.fieldEditor="gridpicker" name.fieldOptions.columns=4
+    export function motorStop(index: Motors) {
+        setPwm((4 - index) * 2, 0, 0);
+        setPwm((4 - index) * 2 + 1, 0, 0);
+    }
+
     //% blockId=funbit_ultrasonic block="超声波|管脚 %pin"
     //% weight=10
     //% group="Ultrasonic/Mic" blockGap=50
