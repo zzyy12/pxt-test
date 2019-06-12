@@ -211,7 +211,7 @@ namespace HaodaBit {
     //% blockId=powerbrick_dht11 block="读 DHT11| %readtype|在 %port"
     //% weight=60
     //% group="Environment" blockGap=50
-    export function DHT11( readtype: DHT11Type,port: Ports1): number {
+    export function DHT11(readtype: DHT11Type, port: Ports1): number {
 
         let pin = PortDigital[port]
 
@@ -270,7 +270,7 @@ namespace HaodaBit {
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
     //% group="MP3" weight=37
     export function MP3Volumn(volumn: number): void {
-        let buf = pins.createBuffer(6);
+        let buf = pins.createBuffer(8);
         buf[0] = 0x7e;
         buf[1] = 0xff;
         buf[2] = 0x06;
@@ -279,12 +279,13 @@ namespace HaodaBit {
         buf[5] = 0x00;
         buf[6] = volumn;
         buf[7] = 0xef;
+        serial.writeBuffer(buf)
     }
 
     //% blockId=powerbrick_mp3_playindex block="MP3 播放曲目|%index"
     //% group="MP3" weight=37
     export function MP3PlayIndex(index: number): void {
-        let buf = pins.createBuffer(7);
+        let buf = pins.createBuffer(8);
         if (index == 0) {
             index = 1;
         }
