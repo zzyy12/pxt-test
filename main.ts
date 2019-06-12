@@ -239,6 +239,7 @@ namespace HaodaBit {
     //% speed.min=0 speed.max=255
     //% index.fieldEditor="gridpicker" index.fieldOptions.columns=2
     //% direction.fieldEditor="gridpicker" direction.fieldOptions.columns=2
+    //% group="Actuator" name.fieldEditor="gridpicker" name.fieldOptions.columns=4
     export function MotorRun(index: Motors, direction: Dir, speed: number): void {
         if (!initialized) {
             MM32DDDD()
