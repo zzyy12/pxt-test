@@ -203,7 +203,7 @@ namespace HaodaBit {
     export function server_lm35(pin: Ports1): number {
 
         let port = PortAnalog[pin]
-        let vas = pins.analogReadPin(port)-30
+        let vas = pins.analogReadPin(port)-40
         let value = (125 * vas) >> 8
         return value;
     }
