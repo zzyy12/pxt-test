@@ -204,7 +204,7 @@ namespace HaodaBit {
 
         let port = PortAnalog[pin]
         let vas = pins.analogReadPin(port)
-        let value = (125 * vas) >> 8
+        let value = (125 * vas)/256
         return value;
     }
 
