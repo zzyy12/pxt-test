@@ -266,7 +266,7 @@ namespace HaodaBit {
     }
 
     //% blockId=powerbrick_mp3_volumn block="MP3 播放音量|%volumn"
-    //% volumn.min=0 volumn.max=31
+    //% volumn.min=0 volumn.max=30
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
     //% group="MP3" weight=37
     export function MP3Volumn(volumn: number): void {
