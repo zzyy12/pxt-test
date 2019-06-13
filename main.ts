@@ -109,36 +109,36 @@ namespace HaodaBit {
 
 
     export enum DHT11Type {
-        //% block=temperature(°C)
+        //% block=温度(°C)
         TemperatureC = 0,
-        //% block=temperature(°F)
+        //% block=温度(°F)
         TemperatureF = 1,
-        //% block=humidity
+        //% block=湿度
         Humidity = 2
     }
 
     export enum PrevNext {
-        //% block=play
+        //% block=播放
         play = 0x0d,
-        //% block=stop
+        //% block=停止
         stop = 0x0e,
-        //% block=next
+        //% block=下一首
         next = 0x01,
-        //% block=prev
+        //% block=上一首
         prev = 0x02
     }
 
     export enum Dir {
-        //% blockId="CW" block="CW"
+        //% blockId="CW" block="正转"
         CW = 1,
-        //% blockId="CCW" block="CCW"
+        //% blockId="CCW" block="反转"
         CCW = -1,
     }
 
     export enum BBLineSensor {
-        //% block="left"
+        //% block="左侧"
         Left,
-        //% block="right"
+        //% block="右侧"
         Right
     }
 
