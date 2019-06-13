@@ -143,11 +143,11 @@ namespace HaodaBit {
     }
 
     export enum ccreadcolor {
-        //% block = "R"
+        //% block = R
         R = 0,
-        //% block = "G"
+        //% block = G
         G = 1,
-        //% block = "B"
+        //% block = B
         B = 2
     }
 
