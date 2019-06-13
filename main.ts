@@ -485,7 +485,7 @@ namespace HaodaBit {
     //% blockId=HaodaBit_TCS34725 block="读取颜色传感器 %pn"
     //% weight=100
     //% group="Environment" blockGap=50
-    export function H_TCS34725(pn: DHT11Type): number {
+    export function H_TCS34725(pn: Creadcolor): number {
         let num = TCS34725_readRGBC(pn);
         return num;
     }
