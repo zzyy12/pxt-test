@@ -367,7 +367,7 @@ namespace HaodaBit {
         serial.redirect(pin, SerialPin.P16, BaudRate.BaudRate9600)
     }
 
-    //% blockId=HaodaBit_mp3_play block="MP3 |%PrevNext"
+    //% blockId=HaodaBit_mp3_play block="MP3 |%pn"
     //% group="MP3" weight=38
     export function MP3Play(pn: PrevNext): void {
         let buf = pins.createBuffer(8);
@@ -481,11 +481,11 @@ namespace HaodaBit {
     }
 
 
-    //% blockId=HaodaBit_TCS34725 block="读取颜色传感器|%ccolor|值"
+    //% blockId=HaodaBit_TCS34725 block="读取颜色传感器|%pn"
     //% weight=100
     //% group="Environment" blockGap=50
-    export function H_TCS34725(ccolor: ccreadcolor): number {
-        let num = TCS34725_readRGBC(ccolor);
+    export function H_TCS34725(pn: ccreadcolor): number {
+        let num = TCS34725_readRGBC(pn);
         return num;
     }
 
