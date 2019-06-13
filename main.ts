@@ -456,11 +456,11 @@ namespace HaodaBit {
     }
 
     function TCS34725_readRGBC(a: number): number {
-        let red = 0;
-        let green = 0;
-        let blue = 0;
-        let clear = 0;
-        TCS34725_getRGBC(red,green,blue,clear);
+
+        let clear = i2cRead(TCS34725_ADDRESS, 0x14);
+        let red = i2cRead(TCS34725_ADDRESS, 0x16);
+        let green = i2cRead(TCS34725_ADDRESS, 0x18);
+        let blue = i2cRead(TCS34725_ADDRESS, 0x1A);
         TCS34725_LOCK();
         let sum = clear;
         let r = red;
@@ -476,8 +476,10 @@ namespace HaodaBit {
             return r;
         } else if (a == 1) {
             return g;
-        } else  {
+        } else if(a == 2) {
             return b;
+        }else{
+            return 0;
         }
     }
 
