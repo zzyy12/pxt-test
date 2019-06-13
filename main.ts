@@ -424,7 +424,7 @@ namespace HaodaBit {
     //% weight=90
     //% group="Linefollower" weight=50
     export function readLine(sensor: BBLineSensor): number {
-        if (sensor == BBLineSensor.Right) {
+        if (sensor == BBLineSensor.Left) {
             return pins.digitalReadPin(DigitalPin.P20);
         } else {
             return pins.digitalReadPin(DigitalPin.P19);
