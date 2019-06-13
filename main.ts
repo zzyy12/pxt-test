@@ -53,6 +53,12 @@ namespace HaodaBit {
     const BYG_CHD_L = 2047
     const BYG_CHD_H = 4095
 
+    const TCS34725IntegrationTime = 0xEB
+    const TCS34725Gain = 0x01
+    const TCS34725_COMMAND_BIT = 0x80
+    const TCS34725_ADDRESS = 0x52
+
+
 
     const PortDigital = [
         DigitalPin.P0,
@@ -136,6 +142,15 @@ namespace HaodaBit {
         Right
     }
 
+    export enum ccreadcolor {
+        //% block = "R"
+        R = 0,
+        //% block = "G"
+        G = 1,
+        //% block = "B"
+        B = 2
+    }
+
     //% shim=powerbrick::dht11Update
     function dht11Update(pin: number): number {
         return 999;
@@ -144,28 +159,7 @@ namespace HaodaBit {
     /**
  * Well known colors for a NeoPixel strip
  */
-    export enum HaodaBitColors {
-        //% block=red
-        Red = 0xFF0000,
-        //% block=orange
-        Orange = 0xFFA500,
-        //% block=yellow
-        Yellow = 0xFFFF00,
-        //% block=green
-        Green = 0x00FF00,
-        //% block=blue
-        Blue = 0x0000FF,
-        //% block=indigo
-        Indigo = 0x4b0082,
-        //% block=violet
-        Violet = 0x8a2be2,
-        //% block=purple
-        Purple = 0xFF00FF,
-        //% block=white
-        White = 0xFFFFFF,
-        //% block=black
-        Black = 0x000000
-    }
+
 
     let dht11Temp = -1;
     let dht11Humi = -1;
@@ -183,6 +177,7 @@ namespace HaodaBit {
 
     let distanceBuf = 0;
     let initialized = false
+    let tcs34725Initialised = false
 
     function i2cWrite(addr: number, reg: number, value: number) {
         let buf = pins.createBuffer(2)
@@ -208,6 +203,8 @@ namespace HaodaBit {
         setFreq(50);
         initialized = true
     }
+
+
 
     function setFreq(freq: number): void {
         // Constrain the frequency
@@ -432,6 +429,70 @@ namespace HaodaBit {
             return 0;
         }
     }
+
+    function TCS34725(): void {
+        i2cWrite(TCS34725_ADDRESS, TCS34725_COMMAND_BIT, 0x00)
+        setFreq(50);
+        tcs34725Initialised = true
+    }
+
+
+    function TCS34725_getRGBC(r: number, g: number, b: number, c: number): void {
+        if (!tcs34725Initialised) { TCS34725(); }
+
+        c = i2cRead(TCS34725_ADDRESS, 0x14);
+        r = i2cRead(TCS34725_ADDRESS, 0x16);
+        g = i2cRead(TCS34725_ADDRESS, 0x18);
+        b = i2cRead(TCS34725_ADDRESS, 0x1A);
+        basic.pause(50);
+    }
+
+
+    function TCS34725_LOCK(): void {
+        let r = i2cRead(TCS34725_ADDRESS, 0x00);
+        r |= 0x10;
+        i2cWrite(TCS34725_ADDRESS, 0x00, r);
+    }
+
+    function TCS34725_readRGBC(a: number): number {
+        let red = 0;
+        let green = 0;
+        let blue = 0;
+        let clear = 0;
+        TCS34725_getRGBC(red,green,blue,clear);
+        TCS34725_LOCK();
+        let sum = clear;
+        let r = red;
+        r /= sum;
+        let g = green;
+        g /= sum;
+        let b = blue;
+        b /= sum;
+        r *= 256;
+        g *= 256;
+        b *= 256;
+        if (a == 0) {
+            return r;
+        } else if (a == 1) {
+            return g;
+        } else  {
+            return b;
+        }
+    }
+
+
+    //% blockId=HaodaBit_TCS34725 block="读取颜色传感器|%ccolor|值"
+    //% weight=100
+    //% group="Environment" blockGap=50
+    export function H_TCS34725(ccolor: ccreadcolor): number {
+        let num = TCS34725_readRGBC(ccolor);
+        return num;
+    }
+
+
+
+   
+
 
 
 
