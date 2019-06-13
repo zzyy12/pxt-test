@@ -426,8 +426,10 @@ namespace HaodaBit {
     export function readLine(sensor: BBLineSensor): number {
         if (sensor == BBLineSensor.Left) {
             return pins.digitalReadPin(DigitalPin.P20);
-        } else {
+        } else if (sensor == BBLineSensor.Right){
             return pins.digitalReadPin(DigitalPin.P19);
+        }else{
+            return 0;
         }
     }
 
