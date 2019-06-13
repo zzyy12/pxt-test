@@ -131,9 +131,9 @@ namespace HaodaBit {
 
     export enum BBLineSensor {
         //% block="left"
-        Left,
+        Left ,
         //% block="right"
-        Right
+        Right 
     }
 
     //% shim=powerbrick::dht11Update
@@ -424,10 +424,10 @@ namespace HaodaBit {
     //% weight=90
     //% group="Linefollower" weight=50
     export function readLine(sensor: BBLineSensor): number {
-        if (sensor == BBLineSensor.Left) {
-            return pins.digitalReadPin(DigitalPin.P20);
-        } else {
+        if (sensor == BBLineSensor.Right) {
             return pins.digitalReadPin(DigitalPin.P19);
+        } else {
+            return pins.digitalReadPin(DigitalPin.P20);
         }
     }
 
