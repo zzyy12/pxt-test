@@ -142,13 +142,14 @@ namespace HaodaBit {
         Right
     }
 
-    export enum ccreadcolor {
-        //% block = R
-        R = 0,
-        //% block = G
-        G = 1,
-        //% block = B
-        B = 2
+
+    export enum Creadcolor {
+        //% block=R值
+        RR = 0,
+        //% block=G值
+        GG = 1,
+        //% block=B值
+        BB = 2
     }
 
     //% shim=powerbrick::dht11Update
