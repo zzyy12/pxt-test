@@ -427,7 +427,7 @@ namespace HaodaBit {
         if (sensor == BBLineSensor.Right) {
             return pins.digitalReadPin(DigitalPin.P19);
         } else if (sensor == BBLineSensor.Left){
-            return pins.digitalReadPin(DigitalPin.P20);
+            return pins.digitalReadPin(DigitalPin.P2);
         }else{
             return 0;
         }
