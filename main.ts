@@ -129,6 +129,13 @@ namespace HaodaBit {
         CCW = -1,
     }
 
+    enum BBLineSensor {
+        //% block="left"
+        Left,
+        //% block="right"
+        Right
+    }
+
     //% shim=powerbrick::dht11Update
     function dht11Update(pin: number): number {
         return 999;
@@ -162,7 +169,7 @@ namespace HaodaBit {
 
     let dht11Temp = -1;
     let dht11Humi = -1;
-    
+
 
 
     export enum Motors {
@@ -411,6 +418,17 @@ namespace HaodaBit {
         buf[6] = index;
         buf[7] = 0xef;
         serial.writeBuffer(buf)
+    }
+
+    //% blockId="Haodabit_read_line" block="读巡线传感器在 %sensor"
+    //% weight=90
+    //% group="Linefollower" weight=50
+    export function readLine(sensor: BBLineSensor): number {
+        if (sensor == BBLineSensor.Left) {
+            return pins.digitalReadPin(DigitalPin.P20);
+        } else {
+            return pins.digitalReadPin(DigitalPin.P19);
+        }
     }
 
 
