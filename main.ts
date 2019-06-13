@@ -242,7 +242,7 @@ namespace HaodaBit {
      * Runs the motor at the given speed
      */
     ///% weight=90
-    //% blockId=motor_MotorRun block="电机|%index|dir|%Dir|speed|%speed"
+    //% blockId=HaodaBit_MotorRun block="电机|%index|dir|%Dir|speed|%speed"
     //% speed.min=0 speed.max=255
     //% index.fieldEditor="gridpicker" index.fieldOptions.columns=2
     //% direction.fieldEditor="gridpicker" direction.fieldOptions.columns=2
@@ -272,7 +272,7 @@ namespace HaodaBit {
     }
 
     //% weight=20
-    //% blockId=motor_motorStop block=电机停止|%index"
+    //% blockId=HaodaBit_motorStop block=电机停止|%index"
     //% index.fieldEditor="gridpicker" index.fieldOptions.columns=2 
     //% group="Actuator" name.fieldEditor="gridpicker" name.fieldOptions.columns=4
     export function motorStop(index: Motors) {
@@ -280,7 +280,7 @@ namespace HaodaBit {
         setPwm((4 - index) * 2 + 1, 0, 0);
     }
 
-    //% blockId=funbit_ultrasonic block="超声波|管脚 %pin"
+    //% blockId=HaodaBit_ultrasonic block="超声波|管脚 %pin"
     //% weight=10
     //% group="Ultrasonic/Mic" blockGap=50
     export function Ultrasonic(pin: Ports): number {
@@ -305,7 +305,7 @@ namespace HaodaBit {
         distanceBuf = d;
         return Math.floor(ret * 10 / 6 / 58);
     }
-    //% blockId=motor_servo block="舵机|%pin|转动角度|%degree"
+    //% blockId=HaodaBit_motor_servo block="舵机|%pin|转动角度|%degree"
     //% weight=100
     //% degree.min=0 degree.max=180
     //% group="Actuator" name.fieldEditor="gridpicker" name.fieldOptions.columns=4
@@ -317,7 +317,7 @@ namespace HaodaBit {
         pins.servoSetPulse(port, value)
     }
 
-    //% blockId=LM35_server block="读取LM35温度在|%pin"
+    //% blockId=HaodaBit_LM35_server block="读取LM35温度在|%pin"
     //% weight=100
     //% group="Environment" blockGap=50
     export function server_lm35(pin: Ports1): number {
@@ -328,7 +328,7 @@ namespace HaodaBit {
         return value;
     }
 
-    //% blockId=powerbrick_dht11 block="读 DHT11| %readtype|在 %port"
+    //% blockId=HaodaBit_dht11 block="读 DHT11| %readtype|在 %port"
     //% weight=60
     //% group="Environment" blockGap=50
     export function DHT11(readtype: DHT11Type, port: Ports1): number {
@@ -362,7 +362,7 @@ namespace HaodaBit {
         return sum;
     }
 
-    //% blockId=powerbrick_mp3_connect block="MP3 初始化|在 %port"
+    //% blockId=HaodaBit_mp3_connect block="MP3 初始化|在 %port"
     //% group="MP3" weight=39
     export function MP3Connect(port: Ports): void {
         let pin = PortSerial[port]
@@ -370,7 +370,7 @@ namespace HaodaBit {
         serial.redirect(pin, SerialPin.P16, BaudRate.BaudRate9600)
     }
 
-    //% blockId=powerbrick_mp3_play block="MP3 |%PrevNext"
+    //% blockId=HaodaBit_mp3_play block="MP3 |%PrevNext"
     //% group="MP3" weight=38
     export function MP3Play(pn: PrevNext): void {
         let buf = pins.createBuffer(8);
@@ -385,7 +385,7 @@ namespace HaodaBit {
         serial.writeBuffer(buf)
     }
 
-    //% blockId=powerbrick_mp3_volumn block="MP3 播放音量|%volumn"
+    //% blockId=HaodaBit_mp3_volumn block="MP3 播放音量|%volumn"
     //% volumn.min=0 volumn.max=30
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
     //% group="MP3" weight=37
@@ -402,7 +402,7 @@ namespace HaodaBit {
         serial.writeBuffer(buf)
     }
 
-    //% blockId=powerbrick_mp3_playindex block="MP3 播放曲目|%index"
+    //% blockId=HaodaBit_mp3_playindex block="MP3 播放曲目|%index"
     //% group="MP3" weight=37
     export function MP3PlayIndex(index: number): void {
         let buf = pins.createBuffer(8);
@@ -420,7 +420,7 @@ namespace HaodaBit {
         serial.writeBuffer(buf)
     }
 
-    //% blockId="Haodabit_read_line" block="读巡线传感器在 %sensor"
+    //% blockId="HaodaBit_read_line" block="读巡线传感器在 %sensor"
     //% weight=90
     //% group="Linefollower" weight=50
     export function readLine(sensor: BBLineSensor): number {
