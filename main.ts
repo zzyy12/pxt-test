@@ -131,9 +131,9 @@ namespace HaodaBit {
 
     export enum BBLineSensor {
         //% block="left"
-        Left ,
+        Left,
         //% block="right"
-        Right 
+        Right
     }
 
     //% shim=powerbrick::dht11Update
@@ -272,7 +272,7 @@ namespace HaodaBit {
     }
 
     //% weight=20
-    //% blockId=HaodaBit_motorStop block=电机停止|%index"
+    //% blockId=HaodaBit_motorStop block="电机停止|%index"
     //% index.fieldEditor="gridpicker" index.fieldOptions.columns=2 
     //% group="Actuator" name.fieldEditor="gridpicker" name.fieldOptions.columns=4
     export function motorStop(index: Motors) {
@@ -426,9 +426,9 @@ namespace HaodaBit {
     export function readLine(sensor: BBLineSensor): number {
         if (sensor == BBLineSensor.Right) {
             return pins.digitalReadPin(DigitalPin.P19);
-        } else if (sensor == BBLineSensor.Left){
+        } else if (sensor == BBLineSensor.Left) {
             return pins.digitalReadPin(DigitalPin.P20);
-        }else{
+        } else {
             return 0;
         }
     }
