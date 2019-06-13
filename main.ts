@@ -129,7 +129,7 @@ namespace HaodaBit {
         CCW = -1,
     }
 
-    enum BBLineSensor {
+    export enum BBLineSensor {
         //% block="left"
         Left,
         //% block="right"
