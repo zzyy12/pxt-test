@@ -494,7 +494,7 @@ namespace HaodaBit {
         return num;
     }
 
-    //% blockId="HaodaBit_read_line" block="读i2c"
+    //% blockId="HaodaBit_readccnum" block="读i2c"
     //% weight=90
     //% group="ddi2c" weight=50
     export function readnumi2c(): number {
