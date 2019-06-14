@@ -500,9 +500,8 @@ namespace HaodaBit {
     }
    
 
-    //% blockId=TCS34725_readcolor block="TCS34725 读取颜色"
-    //% weight=98
-    export function ReadColor(): number {
+
+    export function ReadColor(a: number): number {
         let tmp = i2cRead(TCS34725_ADDRESS, TCS34725_STATUS) & 0x1;
         while (!tmp) {
             basic.pause(5);
@@ -517,9 +516,27 @@ namespace HaodaBit {
         r = r * 255 / avg;
         g = g * 255 / avg;
         b = b * 255 / avg;
-        let hue = rgb2hue(r, g, b);
-        return hue
+        if (a == 0) {
+            return rgb2hue(r, 0, 0);
+        } else if (a == 1) {
+            return rgb2hue(0, g, 0);
+        } else if (a == 2) {
+            return rgb2hue(0, 0, b);
+        } else {
+            return 0;
+        }
+
+
     }
+
+    //% blockId=HaodaBit_TCS34725 block="读取颜色传感器 %pn"
+    //% weight=100
+    //% group="Environment" blockGap=50
+    export function H_TCS34725(pn: Creadcolor): number {
+        let num = ReadColor(pn);
+        return num;
+    }
+
 
 
     
