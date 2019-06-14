@@ -437,9 +437,53 @@ namespace HaodaBit {
         tcs34725Initialised = true
     }
 
+    function TCS34725_setIntegrationTime() {
+        if (!tcs34725Initialised) { TCS34725_begin(); }
+
+        /* Update the timing register */
+        i2cWrite(TCS34725_ADDRESS, 0x01, TCS34725IntegrationTime);
+
+    }
+
+
+    function TCS34725_setGain() {
+        if (!tcs34725Initialised) { TCS34725_begin(); }
+
+        /* Update the timing register */
+        i2cWrite(TCS34725_ADDRESS, 0x0F, TCS34725Gain);
+
+    }
+    function TCS34725_enable(): void {
+
+        i2cWrite(TCS34725_ADDRESS, 0x00, 0x01);
+        basic.pause(3);
+        i2cWrite(TCS34725_ADDRESS, 0x00, 0x01 | 0x02);
+    }
+    function TCS34725_begin(): boolean {
+
+        i2cWrite(TCS34725_ADDRESS, TCS34725_COMMAND_BIT, 0x00);
+
+        /* Make sure we're actually connected */
+        let x = i2cRead(TCS34725_ADDRESS,0x12);
+
+        if ((x != 0x44) && (x != 0x10)) {
+            return false;
+        }
+        tcs34725Initialised = true;
+
+        /* Set default integration time and gain */
+        TCS34725_setIntegrationTime();
+        TCS34725_setGain();
+
+        /* Note: by default, the device is in power down mode on bootup */
+        TCS34725_enable();
+
+        return true;
+    }
+
 
     function TCS34725_getRGBC(r: number, g: number, b: number, c: number): void {
-        if (!tcs34725Initialised) { TCS34725(); }
+        if (!tcs34725Initialised) { TCS34725_begin(); }
 
         c = i2cRead(TCS34725_ADDRESS, 0x14);
         r = i2cRead(TCS34725_ADDRESS, 0x16);
@@ -457,7 +501,7 @@ namespace HaodaBit {
 
     function TCS34725_readRGBC(a: number): number {
 
-        if (!tcs34725Initialised) { TCS34725(); }
+        if (!tcs34725Initialised) { TCS34725_begin(); }
 
         let clear = i2cRead(TCS34725_ADDRESS, 0x14);
         let red = i2cRead(TCS34725_ADDRESS, 0x16);
