@@ -494,6 +494,14 @@ namespace HaodaBit {
         return num;
     }
 
+    //% blockId="HaodaBit_read_line" block="读i2c"
+    //% weight=90
+    //% group="ddi2c" weight=50
+    export function readnumi2c(): number {
+       let val = i2cRead(TCS34725_ADDRESS, 0X16);
+       return val;
+    }
+
 
 
    
