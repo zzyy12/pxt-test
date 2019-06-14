@@ -498,7 +498,7 @@ namespace HaodaBit {
         // power on
         i2cWrite(TCS34725_ADDRESS, TCS34725_ENABLE, 0x01) // clear all interrupt
     }
-   
+
 
 
     export function ReadColor(a: number): number {
@@ -512,10 +512,10 @@ namespace HaodaBit {
         let g = i2cRead(TCS34725_ADDRESS, TCS34725_GDATAL) + i2cRead(TCS34725_ADDRESS, TCS34725_GDATAH) * 256;
         let b = i2cRead(TCS34725_ADDRESS, TCS34725_BDATAL) + i2cRead(TCS34725_ADDRESS, TCS34725_BDATAH) * 256;
         // map to rgb based on clear channel
-        let avg = c / 3;
-        r = r * 255 / avg;
-        g = g * 255 / avg;
-        b = b * 255 / avg;
+        //let avg = c / 3;
+       // r = r * 255 / avg;
+        //g = g * 255 / avg;
+        //b = b * 255 / avg;
         if (a == 0) {
             return r;
         } else if (a == 1) {
@@ -539,7 +539,7 @@ namespace HaodaBit {
 
 
 
-    
+
 
 
 
