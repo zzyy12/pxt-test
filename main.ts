@@ -457,6 +457,8 @@ namespace HaodaBit {
 
     function TCS34725_readRGBC(a: number): number {
 
+        if (!tcs34725Initialised) { TCS34725(); }
+
         let clear = i2cRead(TCS34725_ADDRESS, 0x14);
         let red = i2cRead(TCS34725_ADDRESS, 0x16);
         let green = i2cRead(TCS34725_ADDRESS, 0x18);
