@@ -53,10 +53,28 @@ namespace HaodaBit {
     const BYG_CHD_L = 2047
     const BYG_CHD_H = 4095
 
-    const TCS34725IntegrationTime = 0xEB
-    const TCS34725Gain = 0x01
     const TCS34725_COMMAND_BIT = 0x80
     const TCS34725_ADDRESS = 0x52
+    const TCS34725_ENABLE = 0x00
+    const TCS34725_ATIME = 0x01
+    const TCS34725_WTIME = 0x03
+    const TCS34725_AILTL = 0x04
+    const TCS34725_AILTH = 0x05
+    const TCS34725_AIHTL = 0x06
+    const TCS34725_AIHTH = 0x07
+    const TCS34725_PERS = 0x0C
+    const TCS34725_CONFIG = 0x0D
+    const TCS34725_CONTROL = 0x0F
+    const TCS34725_ID = 0x12
+    const TCS34725_STATUS = 0x13
+    const TCS34725_CDATAL = 0x14
+    const TCS34725_CDATAH = 0x15
+    const TCS34725_RDATAL = 0x16
+    const TCS34725_RDATAH = 0x17
+    const TCS34725_GDATAL = 0x18
+    const TCS34725_GDATAH = 0x19
+    const TCS34725_BDATAL = 0x1A
+    const TCS34725_BDATAH = 0x1B
 
 
 
@@ -431,112 +449,80 @@ namespace HaodaBit {
         }
     }
 
-    function TCS34725(): void {
-        i2cWrite(TCS34725_ADDRESS, TCS34725_COMMAND_BIT, 0x00)
-        setFreq(50);
-        tcs34725Initialised = true
-    }
 
-    function TCS34725_setIntegrationTime() {
-        if (!tcs34725Initialised) { TCS34725_begin(); }
+    function rgb2hue(r: number, g: number, b: number): number {
+        // no float support for pxt ts
+        r = r * 100 / 255;
+        g = g * 100 / 255;
+        b = b * 100 / 255;
 
-        /* Update the timing register */
-        i2cWrite(TCS34725_ADDRESS, 0x01, TCS34725IntegrationTime);
+        let max = Math.max(r, Math.max(g, b))
+        let min = Math.min(r, Math.min(g, b))
+        let c = max - min;
+        let hue = 0;
+        let segment = 0;
+        let shift = 0;
+        if (c != 0) {
+            switch (max) {
+                case r:
+                    segment = (g - b) * 100 / c;
+                    shift = 0;       // R° / (360° / hex sides)
+                    if (segment < 0) {          // hue > 180, full rotation
+                        shift = 360 / 60;         // R° / (360° / hex sides)
+                    }
+                    hue = segment + shift;
+                    break;
+                case g:
+                    segment = (b - r) * 100 / c;
+                    shift = 200;     // G° / (360° / hex sides)
+                    hue = segment + shift;
+                    break;
+                case b:
+                    segment = (r - g) * 100 / c;
+                    shift = 400;     // B° / (360° / hex sides)
+                    hue = segment + shift;
+                    break;
+            }
 
-    }
-
-
-    function TCS34725_setGain() {
-        if (!tcs34725Initialised) { TCS34725_begin(); }
-
-        /* Update the timing register */
-        i2cWrite(TCS34725_ADDRESS, 0x0F, TCS34725Gain);
-
-    }
-    function TCS34725_enable(): void {
-
-        i2cWrite(TCS34725_ADDRESS, 0x00, 0x01);
-        basic.pause(3);
-        i2cWrite(TCS34725_ADDRESS, 0x00, 0x01 | 0x02);
-    }
-    function TCS34725_begin(): boolean {
-
-        i2cWrite(TCS34725_ADDRESS, TCS34725_COMMAND_BIT, 0x00);
-
-        /* Make sure we're actually connected */
-        let x = i2cRead(TCS34725_ADDRESS,0x12);
-
-        if ((x != 0x44) && (x != 0x10)) {
-            return false;
         }
-        tcs34725Initialised = true;
-
-        /* Set default integration time and gain */
-        TCS34725_setIntegrationTime();
-        TCS34725_setGain();
-
-        /* Note: by default, the device is in power down mode on bootup */
-        TCS34725_enable();
-
-        return true;
+        return hue * 60 / 100;
     }
 
-
-    function TCS34725_getRGBC(r: number, g: number, b: number, c: number): void {
-        if (!tcs34725Initialised) { TCS34725_begin(); }
-
-        c = i2cRead(TCS34725_ADDRESS, 0x14);
-        r = i2cRead(TCS34725_ADDRESS, 0x16);
-        g = i2cRead(TCS34725_ADDRESS, 0x18);
-        b = i2cRead(TCS34725_ADDRESS, 0x1A);
-        basic.pause(50);
-    }
-
-
-    function TCS34725_LOCK(): void {
-        let r = i2cRead(TCS34725_ADDRESS, 0x00);
-        r |= 0x10;
-        i2cWrite(TCS34725_ADDRESS, 0x00, r);
-    }
-
-    function TCS34725_readRGBC(a: number): number {
-
-        if (!tcs34725Initialised) { TCS34725_begin(); }
-
-        let clear = i2cRead(TCS34725_ADDRESS, 0x14);
-        let red = i2cRead(TCS34725_ADDRESS, 0x16);
-        let green = i2cRead(TCS34725_ADDRESS, 0x18);
-        let blue = i2cRead(TCS34725_ADDRESS, 0x1A);
-        TCS34725_LOCK();
-        let sum = clear;
-        let r = red;
-        //r /= sum;
-        let g = green;
-        //g /= sum;
-        let b = blue;
-        //b /= sum;
-        r *= 256;
-        g *= 256;
-        b *= 256;
-        if (a == 0) {
-            return red;
-        } else if (a == 1) {
-            return g;
-        } else if (a == 2) {
-            return b;
-        } else {
-            return 0;
-        }
-    }
-
-
-    //% blockId=HaodaBit_TCS34725 block="读取颜色传感器 %pn"
+    //% blockId=TCS34725_init block="TCS34725 初始化"
     //% weight=100
-    //% group="Environment" blockGap=50
-    export function H_TCS34725(pn: Creadcolor): number {
-        let num = TCS34725_readRGBC(pn);
-        return num;
+    export function Init(): void {
+        i2cWrite(TCS34725_ADDRESS, TCS34725_ATIME, 252) // default inte time 4x2.78ms
+        i2cWrite(TCS34725_ADDRESS, TCS34725_CONTROL, 0x03) // todo: make gain adjustable
+        i2cWrite(TCS34725_ADDRESS, TCS34725_ENABLE, 0x00) // put everything off
+
+        // power on
+        i2cWrite(TCS34725_ADDRESS, TCS34725_ENABLE, 0x01) // clear all interrupt
     }
+   
+
+    //% blockId=TCS34725_readcolor block="TCS34725 读取颜色"
+    //% weight=98
+    export function ReadColor(): number {
+        let tmp = i2cRead(TCS34725_ADDRESS, TCS34725_STATUS) & 0x1;
+        while (!tmp) {
+            basic.pause(5);
+            tmp = i2cRead(TCS34725_ADDRESS, TCS34725_STATUS) & 0x1;
+        }
+        let c = i2cRead(TCS34725_ADDRESS, TCS34725_CDATAL) + i2cRead(TCS34725_ADDRESS, TCS34725_CDATAH) * 256;
+        let r = i2cRead(TCS34725_ADDRESS, TCS34725_RDATAL) + i2cRead(TCS34725_ADDRESS, TCS34725_RDATAH) * 256;
+        let g = i2cRead(TCS34725_ADDRESS, TCS34725_GDATAL) + i2cRead(TCS34725_ADDRESS, TCS34725_GDATAH) * 256;
+        let b = i2cRead(TCS34725_ADDRESS, TCS34725_BDATAL) + i2cRead(TCS34725_ADDRESS, TCS34725_BDATAH) * 256;
+        // map to rgb based on clear channel
+        let avg = c / 3;
+        r = r * 255 / avg;
+        g = g * 255 / avg;
+        b = b * 255 / avg;
+        let hue = rgb2hue(r, g, b);
+        return hue
+    }
+
+
+    
 
 
 
