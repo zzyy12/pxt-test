@@ -510,11 +510,11 @@ namespace HaodaBit {
         TCS34725_LOCK();
         let sum = clear;
         let r = red;
-        r /= sum;
+        //r /= sum;
         let g = green;
-        g /= sum;
+        //g /= sum;
         let b = blue;
-        b /= sum;
+        //b /= sum;
         r *= 256;
         g *= 256;
         b *= 256;
@@ -538,14 +538,6 @@ namespace HaodaBit {
         return num;
     }
 
-    //% blockId="HaodaBit_readccnum" block="读i2c"
-    //% weight=90
-    //% group="ddi2c" weight=50
-    export function readnumi2c(): number {
-        if (!tcs34725Initialised) { TCS34725(); }
-        let val = i2cRead(TCS34725_ADDRESS, 0x16);
-        return val;
-    }
 
 
 
