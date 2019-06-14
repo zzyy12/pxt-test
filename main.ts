@@ -475,12 +475,12 @@ namespace HaodaBit {
         g *= 256;
         b *= 256;
         if (a == 0) {
-            return r;
+            return red;
         } else if (a == 1) {
             return g;
-        } else if(a == 2) {
+        } else if (a == 2) {
             return b;
-        }else{
+        } else {
             return 0;
         }
     }
@@ -499,13 +499,13 @@ namespace HaodaBit {
     //% group="ddi2c" weight=50
     export function readnumi2c(): number {
         if (!tcs34725Initialised) { TCS34725(); }
-       let val = i2cRead(TCS34725_ADDRESS, 0x16);
-       return val;
+        let val = i2cRead(TCS34725_ADDRESS, 0x16);
+        return val;
     }
 
 
 
-   
+
 
 
 
