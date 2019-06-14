@@ -517,11 +517,11 @@ namespace HaodaBit {
         g = g * 255 / avg;
         b = b * 255 / avg;
         if (a == 0) {
-            return rgb2hue(r, 0, 0);
+            return r;
         } else if (a == 1) {
-            return rgb2hue(0, g, 0);
+            return g;
         } else if (a == 2) {
-            return rgb2hue(0, 0, b);
+            return b;
         } else {
             return 0;
         }
