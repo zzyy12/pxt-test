@@ -517,21 +517,21 @@ namespace HaodaBit {
         basic.pause(50);
         TCS34725_LOCK();
         let sum = clear;
-        let r = red ;
+        let r = red;
         r /= sum;
-        let g = green / sum;
-        //g /= sum;
+        let g = green;
+        g /= sum;
         let b = blue;
-        //b /= sum;
+        b /= sum;
         r *= 256;
         g *= 256;
         b *= 256;
         if (a == 0) {
-            return r;
+            return Math.round(r);
         } else if (a == 1) {
-            return g;
+            return Math.round(g);
         } else if (a == 2) {
-            return b;
+            return Math.round(b);
         } else {
             return 0;
         }
