@@ -468,7 +468,7 @@ namespace HaodaBit {
     }
     function TCS34725_begin(): boolean {
 
-        i2cWrite(TCS34725_ADDRESS, TCS34725_COMMAND_BIT, 0x00 & 0xFF);
+        i2cWrite(TCS34725_ADDRESS, 0x00, 0x00 & 0xFF);
 
         /* Make sure we're actually connected */
         let x = i2cRead(TCS34725_ADDRESS, TCS34725_COMMAND_BIT | 0x12);
