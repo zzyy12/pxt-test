@@ -468,7 +468,7 @@ namespace HaodaBit {
     }
     function TCS34725_begin(): boolean {
 
-        i2cWrite(TCS34725_ADDRESS, 0x01, 0x00);
+        i2cWrite(TCS34725_ADDRESS, TCS34725_COMMAND_BIT, 0x00);
 
         /* Make sure we're actually connected */
         let x = i2cRead(TCS34725_ADDRESS, 0x12);
@@ -517,16 +517,16 @@ namespace HaodaBit {
         TCS34725_LOCK();
         let sum = clear;
         let r = red;
-        //r /= sum;
+        r /= sum;
         let g = green;
-        //g /= sum;
+        g /= sum;
         let b = blue;
-        //b /= sum;
+        b /= sum;
         r *= 256;
         g *= 256;
         b *= 256;
         if (a == 0) {
-            return red;
+            return r;
         } else if (a == 1) {
             return g;
         } else if (a == 2) {
