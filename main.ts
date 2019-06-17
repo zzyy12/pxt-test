@@ -56,7 +56,7 @@ namespace HaodaBit {
     const TCS34725IntegrationTime = 0xEB
     const TCS34725Gain = 0x01
     const TCS34725_COMMAND_BIT = 0x80
-    const TCS34725_ADDRESS = 0x52
+    const TCS34725_ADDRESS = 0x29
 
 
 
