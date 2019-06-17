@@ -278,6 +278,17 @@ namespace HaodaBit {
         setPwm((4 - index) * 2 + 1, 0, 0);
     }
 
+    /**
+    * Stop all motors
+    */
+    //% weight=10
+    //% blockId=HaodaBit_motorStopAll block="电机全部停止"
+    export function motorStopAll(): void {
+        for (let idx = 1; idx <= 4; idx++) {
+            motorStop(idx);
+        }
+    }
+
     //% blockId=HaodaBit_ultrasonic block="超声波|管脚 %pin"
     //% weight=10
     //% group="Ultrasonic/Mic" blockGap=50
