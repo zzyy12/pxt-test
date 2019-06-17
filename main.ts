@@ -170,10 +170,10 @@ namespace HaodaBit {
     export enum Motors {
         //%blockId=HaodaBit_motordriver_motor_one
         //% block="MA"
-        Motor1,
+        MA = 0x1,
         //%blockId=HaodaBit_motordriver_motor_two
         //% block="MB"
-        Motor2
+        MB = 0x2
     }
 
     let distanceBuf = 0;
