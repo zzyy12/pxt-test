@@ -283,8 +283,9 @@ namespace HaodaBit {
     */
     //% weight=10
     //% blockId=HaodaBit_motorStopAll block="电机全部停止"
+    //% group="Actuator" name.fieldEditor="gridpicker" name.fieldOptions.columns=4
     export function motorStopAll(): void {
-        for (let idx = 1; idx <= 4; idx++) {
+        for (let idx = 1; idx <= 2; idx++) {
             motorStop(idx);
         }
     }
