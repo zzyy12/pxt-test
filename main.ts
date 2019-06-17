@@ -527,7 +527,7 @@ namespace HaodaBit {
         g *= 256;
         b *= 256;
         if (a == 0) {
-            return red;
+            return clear;
         } else if (a == 1) {
             return g;
         } else if (a == 2) {
