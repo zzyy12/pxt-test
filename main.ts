@@ -517,12 +517,12 @@ namespace HaodaBit {
         basic.pause(50);
         TCS34725_LOCK();
         let sum = clear;
-        let r = red;
-        r /= sum;
-        let g = green;
-        g /= sum;
+        let r = red/sum;
+        //r /= sum;
+        let g = green/sum;
+        //g /= sum;
         let b = blue;
-        b /= sum;
+        //b /= sum;
         r *= 256;
         g *= 256;
         b *= 256;
