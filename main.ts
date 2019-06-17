@@ -518,11 +518,11 @@ namespace HaodaBit {
         TCS34725_LOCK();
         let sum = clear;
         let r = red;
-        //r /= sum;
+        r /= sum;
         let g = green;
-        //g /= sum;
+        g /= sum;
         let b = blue;
-        //b /= sum;
+        b /= sum;
         r *= 256;
         g *= 256;
         b *= 256;
