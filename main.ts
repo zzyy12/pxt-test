@@ -448,7 +448,7 @@ namespace HaodaBit {
         if (!tcs34725Initialised) { TCS34725_begin(); }
 
         /* Update the timing register */
-        i2cWrite(TCS34725_ADDRESS, TCS34725_COMMAND_BIT | 0x01, TCS34725IntegrationTime & 0xFF);
+        i2cWrite(TCS34725_ADDRESS, 0x01, TCS34725IntegrationTime);
 
     }
 
@@ -457,23 +457,23 @@ namespace HaodaBit {
         if (!tcs34725Initialised) { TCS34725_begin(); }
 
         /* Update the timing register */
-        i2cWrite(TCS34725_ADDRESS, TCS34725_COMMAND_BIT | 0x0F, TCS34725Gain & 0xFF);
+        i2cWrite(TCS34725_ADDRESS, 0x0F, TCS34725Gain);
 
     }
     function TCS34725_enable(): void {
 
-        i2cWrite(TCS34725_ADDRESS, TCS34725_COMMAND_BIT | 0x00, 0x01 & 0xFF);
+        i2cWrite(TCS34725_ADDRESS, 0x00, 0x01);
         basic.pause(3);
-        i2cWrite(TCS34725_ADDRESS, TCS34725_COMMAND_BIT | 0x00, (0x01 | 0x02) & 0xFF);
+        i2cWrite(TCS34725_ADDRESS, 0x00, 0x01 | 0x02);
     }
     function TCS34725_begin(): boolean {
 
-        i2cWrite(TCS34725_ADDRESS, TCS34725_COMMAND_BIT | 0x01, 0x00 & 0xFF);
+        i2cWrite(TCS34725_ADDRESS, 0x01, 0x00);
 
         /* Make sure we're actually connected */
-        let x = i2cRead(TCS34725_ADDRESS, TCS34725_COMMAND_BIT | 0x12);
+        let x = i2cRead(TCS34725_ADDRESS, 0x12);
 
-        if ((x != 0x44) && (x != 0x10)) {
+        if ((x != 0x44) && (x != 0x4D)) {
             return false;
         }
         tcs34725Initialised = true;
@@ -492,46 +492,45 @@ namespace HaodaBit {
     function TCS34725_getRGBC(r: number, g: number, b: number, c: number): void {
         if (!tcs34725Initialised) { TCS34725_begin(); }
 
-        c = i2cRead(TCS34725_ADDRESS, TCS34725_COMMAND_BIT | 0x14);
-        r = i2cRead(TCS34725_ADDRESS, TCS34725_COMMAND_BIT | 0x16);
-        g = i2cRead(TCS34725_ADDRESS, TCS34725_COMMAND_BIT | 0x18);
-        b = i2cRead(TCS34725_ADDRESS, TCS34725_COMMAND_BIT | 0x1A);
+        c = i2cRead(TCS34725_ADDRESS, 0x14);
+        r = i2cRead(TCS34725_ADDRESS, 0x16);
+        g = i2cRead(TCS34725_ADDRESS, 0x18);
+        b = i2cRead(TCS34725_ADDRESS, 0x1A);
         basic.pause(50);
     }
 
 
     function TCS34725_LOCK(): void {
-        let r = i2cRead(TCS34725_ADDRESS, TCS34725_COMMAND_BIT | 0x00);
+        let r = i2cRead(TCS34725_ADDRESS, 0x00);
         r |= 0x10;
-        i2cWrite(TCS34725_ADDRESS, TCS34725_COMMAND_BIT | 0x00, r & 0xFF);
+        i2cWrite(TCS34725_ADDRESS, 0x00, r);
     }
 
     function TCS34725_readRGBC(a: number): number {
 
         if (!tcs34725Initialised) { TCS34725_begin(); }
 
-        let clear = i2cRead(TCS34725_ADDRESS, TCS34725_COMMAND_BIT | 0x14);
+        let clear = i2cRead(TCS34725_ADDRESS, 0x14);
         let red = i2cRead(TCS34725_ADDRESS, 0x16);
-        let green = i2cRead(TCS34725_ADDRESS, TCS34725_COMMAND_BIT | 0x18);
-        let blue = i2cRead(TCS34725_ADDRESS, TCS34725_COMMAND_BIT | 0x1A);
-        basic.pause(50);
+        let green = i2cRead(TCS34725_ADDRESS, 0x18);
+        let blue = i2cRead(TCS34725_ADDRESS, 0x1A);
         TCS34725_LOCK();
         let sum = clear;
         let r = red;
-        r /= sum;
+        //r /= sum;
         let g = green;
-        g /= sum;
+        //g /= sum;
         let b = blue;
-        b /= sum;
+        //b /= sum;
         r *= 256;
         g *= 256;
         b *= 256;
         if (a == 0) {
-            return Math.round(r);
+            return red;
         } else if (a == 1) {
-            return Math.round(g);
+            return g;
         } else if (a == 2) {
-            return Math.round(b);
+            return b;
         } else {
             return 0;
         }
