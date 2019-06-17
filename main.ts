@@ -526,11 +526,11 @@ namespace HaodaBit {
         g *= 256;
         b *= 256;
         if (a == 0) {
-            return r;
+            return Math.round(r);
         } else if (a == 1) {
-            return g;
+            return Math.round(r);
         } else if (a == 2) {
-            return b;
+            return Math.round(r);
         } else {
             return 0;
         }
