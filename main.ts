@@ -511,7 +511,7 @@ namespace HaodaBit {
         if (!tcs34725Initialised) { TCS34725_begin(); }
 
         let clear = i2cRead(TCS34725_ADDRESS, TCS34725_COMMAND_BIT | 0x14);
-        let red = i2cRead(TCS34725_ADDRESS, TCS34725_COMMAND_BIT | 0x16);
+        let red = i2cRead(TCS34725_ADDRESS, 0x16);
         let green = i2cRead(TCS34725_ADDRESS, TCS34725_COMMAND_BIT | 0x18);
         let blue = i2cRead(TCS34725_ADDRESS, TCS34725_COMMAND_BIT | 0x1A);
         basic.pause(50);
