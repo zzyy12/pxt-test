@@ -517,9 +517,9 @@ namespace HaodaBit {
         basic.pause(50);
         TCS34725_LOCK();
         let sum = clear;
-        let r = red/5;
+        let r = red / 5;
         //r /= sum;
-        let g = green/sum;
+        let g = green / sum;
         //g /= sum;
         let b = blue;
         //b /= sum;
@@ -527,7 +527,7 @@ namespace HaodaBit {
         g *= 256;
         b *= 256;
         if (a == 0) {
-            return r;
+            return clear;
         } else if (a == 1) {
             return g;
         } else if (a == 2) {
