@@ -298,15 +298,15 @@ namespace HaodaBit {
         pins.digitalWritePin(port, 0);
 
         // read pulse
-        let d = pins.pulseIn(port, PulseValue.High, 25000);
+        let d = pins.pulseIn(port, PulseValue.High);
         let ret = d;
         // filter timeout spikes
         if (ret == 0 && distanceBuf != 0) {
             ret = distanceBuf;
         }
         distanceBuf = d;
-        return d;
-       // return Math.floor(ret * 10 / 6 / 58);
+       
+        return Math.floor(ret * 10 / 6 / 58);
     }
     //% blockId=HaodaBit_motor_servo block="舵机|%pin|转动角度|%degree"
     //% weight=100
