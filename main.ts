@@ -1,12 +1,4 @@
 
-/*
-Riven
-Microbit powerbrick extension board
-load dependency
-"powerbrick": "file:../pxt-powerbrick"
-dht11 port from MonadnockSystems/pxt-dht11
-rgb pixel port from Microsoft/pxt-neopixel
-*/
 
 //% weight=10 color=#CA8EFF icon="\uf013" block="testbit"
 //% groups='["Ultrasonic/Mic", "Linefollower", "Environment", "Actuator", "Mp3", "RGB"]'
@@ -313,7 +305,8 @@ namespace HaodaBit {
             ret = distanceBuf;
         }
         distanceBuf = d;
-        return Math.floor(ret * 10 / 6 / 58);
+        return d;
+       // return Math.floor(ret * 10 / 6 / 58);
     }
     //% blockId=HaodaBit_motor_servo block="舵机|%pin|转动角度|%degree"
     //% weight=100
