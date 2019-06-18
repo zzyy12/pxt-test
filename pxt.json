@@ -9,12 +9,10 @@
     "files": [
         "README.md",
         "main.ts"
+		"main.cpp"
     ],
     "testFiles": [
-        
-		"main.ts",
-		"main.cpp",
-		"test.ts"
+        "test.ts"
     ],
     "public": false,
     "preferredEditor": "tsprj"
