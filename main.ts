@@ -298,7 +298,7 @@ namespace HaodaBit {
         pins.digitalWritePin(port, 0);
 
         // read pulse
-        let d = pins.pulseIn(port, PulseValue.High,16500);
+        let d = pins.pulseIn(port, PulseValue.High,25000);
         let ret = d;
         // filter timeout spikes
         if (ret == 0 && distanceBuf != 0) {
