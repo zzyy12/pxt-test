@@ -2,7 +2,7 @@
 
 //% weight=10 color=#CA8EFF icon="\uf013" block="testbit"
 //% groups='["Ultrasonic/Mic", "Linefollower", "Environment", "Actuator", "Mp3", "RGB"]'
-namespace HaodaBit {
+declare namespace HaodaBit {
 
     const MM32_ADDRESS = 0x40
     const MODE1 = 0x00
@@ -149,18 +149,7 @@ namespace HaodaBit {
         return 999;
     }
 	
-	    //% advanced=true shim=Mbit_IR::initIR
-    function initIR(pin: Pins): void {
-        return
-    }
-    //% advanced=true shim=Mbit_IR::onPressEvent
-    function onPressEvent(btn: RemoteButton, body: Action): void {
-        return
-    }
-    //% advanced=true shim=Mbit_IR::getParam
-    function getParam(): number {
-        return 0
-    }
+
 
     /**
  * Well known colors for a NeoPixel strip
