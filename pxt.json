@@ -4,13 +4,13 @@
     "description": "",
     "dependencies": {
         "core": "*",
-		"neopixel": "github:kittenbot/pxt-neopixel#v0.6.13"
+		"neopixel": "github:Haohaodada-official/pxt-neopixel#v0.6.12"
     },
     "files": [
         "README.md",
         "main.ts",
+		"enums.d.ts",
 		"main.cpp",
-	    "enums.d.ts",
         "ir.cpp",
         "ReceiverIR.cpp",
         "ReceiverIR.h",

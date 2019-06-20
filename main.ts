@@ -148,6 +148,19 @@ namespace HaodaBit {
     function dht11Update(pin: number): number {
         return 999;
     }
+	
+	    //% advanced=true shim=Mbit_IR::initIR
+    function initIR(pin: Pins): void {
+        return
+    }
+    //% advanced=true shim=Mbit_IR::onPressEvent
+    function onPressEvent(btn: RemoteButton, body: Action): void {
+        return
+    }
+    //% advanced=true shim=Mbit_IR::getParam
+    function getParam(): number {
+        return 0
+    }
 
     /**
  * Well known colors for a NeoPixel strip
@@ -540,19 +553,24 @@ namespace HaodaBit {
     }
 	
 	
-	 //% blockId=HaodaBit_ir_received_left_event
-    //% block="当 |%btn| 按键被按下" shim=Mbit_IR::onPressEvent
-    export function onPressEvent(btn: RemoteButton, body: () => void): void;
 
+
+    //% blockId=HaodaBit_ir_received_left_event block="当 |%btn| 按键被按下"
+    //% weight=100
+	//% shim=Mbit_IR::onPressEvent
+     export function onPressEvent(btn: RemoteButton, body: () => void): void;
+
+		
+	
     /**
      * initialises local variablesssss
      */
-    //% blockId=HaodaBit_ir_init
-    //% block="连接红外接收在 %pin" shim=Mbit_IR::init
+    //% blockId=HaodaBit_ir_init block="连接红外接收在 %pin"
+    //% weight=100
+	//% shim=Mbit_IR::init
    export function init(pin: Pins): void;
 }
 
-// Auto-generated. Do not edit. Really.
 
 
 
@@ -561,9 +579,4 @@ namespace HaodaBit {
 
 
 
-
-
-
-
-}
 
