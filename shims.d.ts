@@ -2,7 +2,8 @@
 
 
 
-//% weight=10 color=#CA8EFF icon="\uf013"
+    //% color=50 weight=19
+    //% icon="\uf1eb"
 declare namespace HaodaBit {
 
     /**
