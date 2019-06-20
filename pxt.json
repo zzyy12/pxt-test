@@ -9,6 +9,8 @@
     "files": [
         "README.md",
         "main.ts",
+		"shims.d.ts",
+        "enums.d.ts",
 		"main.cpp",
         "ir.cpp",
         "ReceiverIR.cpp",
