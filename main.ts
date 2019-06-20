@@ -547,7 +547,8 @@ namespace HaodaBit {
     //% blockId=HaodaBit_ir_received_left_event block="当 |%btn| 按键被按下"
     //% weight=100
 	//% shim=Mbit_IR::onPressEvent
-     export function onPressEvent(btn: RemoteButton, body: () => void): void;
+     export function onPressEvent(btn: RemoteButton, body: () => void): void{
+	 }
 
 		
 	
@@ -557,7 +558,9 @@ namespace HaodaBit {
     //% blockId=HaodaBit_ir_init block="连接红外接收在 %pin"
     //% weight=100
 	//% shim=Mbit_IR::init
-   export function init(pin: Pins): void;
+   export function init(pin: Pins): void{
+	   
+   }
 }
 
 
