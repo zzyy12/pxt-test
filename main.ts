@@ -54,7 +54,7 @@ namespace HaodaBit {
 
 
 
-
+/**
 
      enum RemoteButton {   
 	
@@ -77,6 +77,7 @@ namespace HaodaBit {
         IR_BUTTON_POUND = 0x8f
     
     }
+	*/
 
 
 
@@ -583,7 +584,7 @@ namespace HaodaBit {
 	
     /**
      * initialises local variablesssss
-     */
+     
 	 
 	 
 	 
@@ -610,7 +611,7 @@ namespace HaodaBit {
 	   
    }
    
-
+*/
 }
 
 
