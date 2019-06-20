@@ -2,9 +2,8 @@
 
 
 
-    //% color=50 weight=19
-    //% icon="\uf1eb"
-declare namespace Mbit_IR {
+//% weight=10 color=#CA8EFF icon="\uf013" block="testbit"
+declare namespace HaodaBit {
 
     /**
      * button pushed.
