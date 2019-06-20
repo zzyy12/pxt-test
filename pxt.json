@@ -9,7 +9,12 @@
     "files": [
         "README.md",
         "main.ts",
-		"main.cpp"
+		"main.cpp",
+	    "enums.d.ts",
+        "ir.cpp",
+        "ReceiverIR.cpp",
+        "ReceiverIR.h",
+        "RemoteIR.h"
     ],
     "testFiles": [
         "test.ts"

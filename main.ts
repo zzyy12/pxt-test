@@ -538,6 +538,21 @@ namespace HaodaBit {
         let num = TCS34725_readRGBC(pn);
         return num;
     }
+	
+	
+	 //% blockId=HaodaBit_ir_received_left_event
+    //% block="当 |%btn| 按键被按下" shim=Mbit_IR::onPressEvent
+    function onPressEvent(btn: RemoteButton, body: () => void): void;
+
+    /**
+     * initialises local variablesssss
+     */
+    //% blockId=HaodaBit_ir_init
+    //% block="连接红外接收在 %pin" shim=Mbit_IR::init
+    function init(pin: Pins): void;
+}
+
+// Auto-generated. Do not edit. Really.
 
 
 
