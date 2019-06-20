@@ -2,7 +2,7 @@
 
 //% weight=10 color=#CA8EFF icon="\uf013" block="testbit"
 //% groups='["Ultrasonic/Mic", "Linefollower", "Environment", "Actuator", "Mp3", "RGB"]'
-declare namespace HaodaBit {
+namespace HaodaBit {
 
     const MM32_ADDRESS = 0x40
     const MODE1 = 0x00

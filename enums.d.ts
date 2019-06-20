@@ -1,7 +1,7 @@
 // Auto-generated. Do not edit.
 
 
-    declare enum Pins {
+     enum Pins {
     P0 = 3,
     P1 = 2,
     P2 = 1,
@@ -12,7 +12,7 @@
     }
 
 
-    declare enum RemoteButton {   
+     enum RemoteButton {   
 	
         IR_BUTTON_0 = 0x4f,
         IR_BUTTON_1 = 0xff,
@@ -33,7 +33,7 @@
         IR_BUTTON_POUND = 0x8f
     
     }
-declare namespace Mbit_IR {
+ namespace Mbit_IR {
 }
 
 // Auto-generated. Do not edit. Really.
