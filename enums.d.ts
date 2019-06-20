@@ -7,7 +7,7 @@
     P2 = 1,
     P8 = 18,
     P12 = 20,
-    P16 = 16
+    P16 = 16,
     }
 
 
@@ -28,7 +28,7 @@
         IR_BUTTON_LEFT = 0xd7,
         IR_BUTTON_RIGHT = 0x97,
         IR_BUTTON_SPARK = 0xcf,
-        IR_BUTTON_POUND = 0x8f
+        IR_BUTTON_POUND = 0x8f,
     }
 declare namespace Mbit_IR {
 }
