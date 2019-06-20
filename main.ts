@@ -186,6 +186,7 @@ namespace HaodaBit {
 
     let dht11Temp = -1;
     let dht11Humi = -1;
+	let  alreadyInit = 0;
 
 
 
@@ -582,15 +583,33 @@ namespace HaodaBit {
 	
     /**
      * initialises local variablesssss
-     
+     */
+	 
+	 
+	 
+	 // Auto-generated. Do not edit. Really.
+    //% advanced=true Mbit_IR=::init
+    function initIR(pin: Pins): void {
+        return
+    }
+    function BitirInit(pin:number): void {
+        if (alreadyInit == 1) {
+            return
+        }
+        initIR(pin)
+        alreadyInit = 1
+    }
+	
+	
     //% blockId=HaodaBit_ir_init block="连接红外接收在 %pin"
     //% weight=100
 	//% shim=Mbit_IR::init
    export function init(pin: Ports): void{
-	  let pindd = PortDigital[port]
+	  let pindd = PortDigital[pin];
+	  BitirInit(pindd);
 	   
    }
-   */
+   
 
 }
 
