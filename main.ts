@@ -59,7 +59,6 @@ namespace HaodaBit {
 
 
 
-
     const PortDigital = [
         DigitalPin.P0,
         DigitalPin.P1,
@@ -105,6 +104,16 @@ namespace HaodaBit {
 
 
     }
+    const Ports2 = [
+        Pins.P0,
+        Pins.P1,
+        Pins.P2,
+        Pins.P8,
+        Pins.P12,
+        Pins.P16
+
+    ]
+
 
 
 
@@ -209,10 +218,11 @@ namespace HaodaBit {
     }
 
     function haodabitInit(pin: number): void {
+        let ppo = Ports2[pin];
         if (alreadyInit == 1) {
             return
         }
-        initIR(pin)
+        initIR(ppo)
         alreadyInit = 1
     }
 
@@ -607,11 +617,10 @@ namespace HaodaBit {
         return num;
     }
 
-   //% blockId=IR_read block="读红外的值在 %pin"
+    //% blockId=IR_read block="读红外的值在 %pin"
     //% weight=100
     export function IR_read(pin: Ports): number {
-        let port = PortDigital[pin]
-        haodabitInit(port)
+        haodabitInit(pin)
         return getParam()
     }
 
