@@ -139,39 +139,39 @@ namespace HaodaBit {
 
     enum RemoteButton {
         //% block=0
-        IR_BUTTON_0 = 0x4f,
+        IR_BUTTON_0 = 13,
         //% block=1
-        IR_BUTTON_1 = 0xff,
+        IR_BUTTON_1 = 0,
         //% block=2
-        IR_BUTTON_2 = 0x7f,
+        IR_BUTTON_2 = 1,
         //% block=3
-        IR_BUTTON_3 = 0xbf,
+        IR_BUTTON_3 = 2,
         //% block=4
-        IR_BUTTON_4 = 0xdf,
+        IR_BUTTON_4 = 4,
         //% block=5
-        IR_BUTTON_5 = 0x5f,
+        IR_BUTTON_5 = 5,
         //% block=6
-        IR_BUTTON_6 = 0x9f,
+        IR_BUTTON_6 = 6,
         //% block=7
-        IR_BUTTON_7 = 0xef,
+        IR_BUTTON_7 = 8,
         //% block=8
-        IR_BUTTON_8 = 0x6f,
+        IR_BUTTON_8 = 9,
         //% block=9
-        IR_BUTTON_9 = 0xaf,
+        IR_BUTTON_9 = 10,
         //% block=OK
-        IR_BUTTON_OK = 0x57,
+        IR_BUTTON_OK = 21,
         //% block=上
-        IR_BUTTON_UP = 0x77,
+        IR_BUTTON_UP = 17,
         //% block=下
-        IR_BUTTON_DOWN = 0x67,
+        IR_BUTTON_DOWN = 25,
         //% block=左
-        IR_BUTTON_LEFT = 0xd7,
+        IR_BUTTON_LEFT = 20,
         //% block=右
-        IR_BUTTON_RIGHT = 0x97,
+        IR_BUTTON_RIGHT = 22,
         //% block=*
-        IR_BUTTON_SPARK = 0xcf,
+        IR_BUTTON_SPARK = 12,
         //% block=#
-        IR_BUTTON_POUND = 0x8f
+        IR_BUTTON_POUND = 14
 
     }
 
