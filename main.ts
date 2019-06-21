@@ -137,41 +137,41 @@ namespace HaodaBit {
         prev = 0x02
     }
 
-    enum RemoteButton {
+    enum Button {
         //% block=0
-        IR_BUTTON_0 = 13,
+        IR_BUTTON_0 = 0x0d,
         //% block=1
-        IR_BUTTON_1 = 0,
+        IR_BUTTON_1 = 0x00,
         //% block=2
-        IR_BUTTON_2 = 1,
+        IR_BUTTON_2 = 0x01,
         //% block=3
-        IR_BUTTON_3 = 2,
+        IR_BUTTON_3 = 0x02,
         //% block=4
-        IR_BUTTON_4 = 4,
+        IR_BUTTON_4 = 0x04,
         //% block=5
-        IR_BUTTON_5 = 5,
+        IR_BUTTON_5 = 0x05,
         //% block=6
-        IR_BUTTON_6 = 6,
+        IR_BUTTON_6 = 0x06,
         //% block=7
-        IR_BUTTON_7 = 8,
+        IR_BUTTON_7 = 0x08,
         //% block=8
-        IR_BUTTON_8 = 9,
+        IR_BUTTON_8 = 0x09,
         //% block=9
-        IR_BUTTON_9 = 10,
+        IR_BUTTON_9 = 0x0a,
         //% block=OK
-        IR_BUTTON_OK = 21,
+        IR_BUTTON_OK = 0x15,
         //% block=上
-        IR_BUTTON_UP = 17,
+        IR_BUTTON_UP = 0x11,
         //% block=下
-        IR_BUTTON_DOWN = 25,
+        IR_BUTTON_DOWN = 0x19,
         //% block=左
-        IR_BUTTON_LEFT = 20,
+        IR_BUTTON_LEFT = 0x14,
         //% block=右
-        IR_BUTTON_RIGHT = 22,
+        IR_BUTTON_RIGHT = 0x16,
         //% block=*
-        IR_BUTTON_SPARK = 12,
+        IR_BUTTON_SPARK = 0x0c,
         //% block=#
-        IR_BUTTON_POUND = 14
+        IR_BUTTON_POUND = 0x0e
 
     }
 
@@ -626,7 +626,7 @@ namespace HaodaBit {
 
     //% blockId=IR_KEY block="红外按键| %readkey"
     //% weight=100
-    export function key_read(readkey: RemoteButton): number {
+    export function key_read(readkey: Button): number {
         return readkey;
     }
 
