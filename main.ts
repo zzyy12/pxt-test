@@ -1,7 +1,7 @@
 
 
 //% weight=10 color=#CA8EFF icon="\uf013" block="testbit"
-//% groups='["Ultrasonic/Mic", "Linefollower", "Environment", "Actuator", "Mp3", "RGB"]'
+//% groups='["Ultrasonic/Mic", "Linefollower", "Environment", "Actuator", "IR", "Mp3", "RGB"]'
 namespace HaodaBit {
 
     const MM32_ADDRESS = 0x40
@@ -619,6 +619,7 @@ namespace HaodaBit {
 
     //% blockId=IR_read block="读红外的值在 %pin"
     //% weight=100
+	//% group="IR" weight=50
     export function IR_read(pin: Ports): number {
         haodabitInit(pin)
         return getParam()
@@ -626,6 +627,7 @@ namespace HaodaBit {
 
     //% blockId=IR_KEY block="红外按键| %readkey"
     //% weight=100
+	//% group="IR" weight=50
     export function key_read(readkey: Buttondd): number {
         return readkey;
     }
