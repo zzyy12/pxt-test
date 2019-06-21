@@ -49,35 +49,14 @@ namespace HaodaBit {
     const TCS34725Gain = 0x01
     const TCS34725_COMMAND_BIT = 0x80
     const TCS34725_ADDRESS = 0x29
-	
-	// Auto-generated. Do not edit.
+
+    // Auto-generated. Do not edit.
 
 
 
-/**
 
-     enum RemoteButton {   
-	
-        IR_BUTTON_0 = 0x4f,
-        IR_BUTTON_1 = 0xff,
-        IR_BUTTON_2 = 0x7f,
-        IR_BUTTON_3 = 0xbf,
-        IR_BUTTON_4 = 0xdf,
-        IR_BUTTON_5 = 0x5f,
-        IR_BUTTON_6 = 0x9f,
-        IR_BUTTON_7 = 0xef,
-        IR_BUTTON_8 = 0x6f,
-        IR_BUTTON_9 = 0xaf,
-        IR_BUTTON_OK = 0x57,
-        IR_BUTTON_UP = 0x77,
-        IR_BUTTON_DOWN = 0x67,
-        IR_BUTTON_LEFT = 0xd7,
-        IR_BUTTON_RIGHT = 0x97,
-        IR_BUTTON_SPARK = 0xcf,
-        IR_BUTTON_POUND = 0x8f
-    
-    }
-	*/
+
+
 
 
 
@@ -149,6 +128,44 @@ namespace HaodaBit {
         prev = 0x02
     }
 
+    enum RemoteButton {
+        //% block=0
+        IR_BUTTON_0 = 0x4f,
+        //% block=1
+        IR_BUTTON_1 = 0xff,
+        //% block=2
+        IR_BUTTON_2 = 0x7f,
+        //% block=3
+        IR_BUTTON_3 = 0xbf,
+        //% block=4
+        IR_BUTTON_4 = 0xdf,
+        //% block=5
+        IR_BUTTON_5 = 0x5f,
+        //% block=6
+        IR_BUTTON_6 = 0x9f,
+        //% block=7
+        IR_BUTTON_7 = 0xef,
+        //% block=8
+        IR_BUTTON_8 = 0x6f,
+        //% block=9
+        IR_BUTTON_9 = 0xaf,
+        //% block=OK
+        IR_BUTTON_OK = 0x57,
+        //% block=上
+        IR_BUTTON_UP = 0x77,
+        //% block=下
+        IR_BUTTON_DOWN = 0x67,
+        //% block=左
+        IR_BUTTON_LEFT = 0xd7,
+        //% block=右
+        IR_BUTTON_RIGHT = 0x97,
+        //% block=*
+        IR_BUTTON_SPARK = 0xcf,
+        //% block=#
+        IR_BUTTON_POUND = 0x8f
+
+    }
+
     export enum Dir {
         //% blockId="CW" block="正转"
         CW = 1,
@@ -177,8 +194,27 @@ namespace HaodaBit {
     function dht11Update(pin: number): number {
         return 999;
     }
-	
 
+    //% advanced=true shim=maqueenIR::initIR
+    function initIR(pin: Pins): void {
+        return
+    }
+    //% advanced=true shim=maqueenIR::onPressEvent
+    function onPressEvent(btn: RemoteButton, body: Action): void {
+        return
+    }
+    //% advanced=true shim=maqueenIR::getParam
+    function getParam(): number {
+        return 0
+    }
+
+    function haodabitInit(pin: number): void {
+        if (alreadyInit == 1) {
+            return
+        }
+        initIR(pin)
+        alreadyInit = 1
+    }
 
     /**
  * Well known colors for a NeoPixel strip
@@ -187,7 +223,7 @@ namespace HaodaBit {
 
     let dht11Temp = -1;
     let dht11Humi = -1;
-	let  alreadyInit = 0;
+    let alreadyInit = 0;
 
 
 
@@ -570,48 +606,21 @@ namespace HaodaBit {
         let num = TCS34725_readRGBC(pn);
         return num;
     }
-	
-	
-/**
-*
-*   //% blockId=HaodaBit_ir_received_left_event block="当 |%btn| 按键被按下"
-*    //% weight=100
-*	//% shim=Mbit_IR::onPressEvent
-*     export function onPressEvent(btn: RemoteButton, body: () => void): void{
-*	 }
-*
-*/	
-	
-    /**
-     * initialises local variablesssss
-     
-	 
-	 
-	 
-	 // Auto-generated. Do not edit. Really.
-    //% advanced=true Mbit_IR=::init
-    function initIR(pin: Pins): void {
-        return
-    }
-    function BitirInit(pin:number): void {
-        if (alreadyInit == 1) {
-            return
-        }
-        initIR(pin)
-        alreadyInit = 1
-    }
-	
-	
-    //% blockId=HaodaBit_ir_init block="连接红外接收在 %pin"
+
+    //% blockId=IR_read block="读红外的值在 %pin"
     //% weight=100
-	//% shim=Mbit_IR::init
-   export function init(pin: Ports): void{
-	  let pindd = PortDigital[pin];
-	  BitirInit(pindd);
-	   
-   }
-   
-*/
+    export function IR_read(pin: Ports): number {
+        let port = PortDigital[pin]
+        haodabitInit(port)
+        return getParam()
+    }
+
+    //% blockId=IR_read block="红外按键| %readkey"
+    //% weight=100
+    export function key_read(readkey: RemoteButton): number {
+        return readkey;
+    }
+
 }
 
 
