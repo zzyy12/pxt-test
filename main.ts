@@ -137,7 +137,7 @@ namespace HaodaBit {
         prev = 0x02
     }
 
-    enum Button {
+    export enum Buttondd {
         //% block=0
         IR_BUTTON_0 = 0x0d,
         //% block=1
@@ -626,7 +626,7 @@ namespace HaodaBit {
 
     //% blockId=IR_KEY block="红外按键| %readkey"
     //% weight=100
-    export function key_read(readkey: Button): number {
+    export function key_read(readkey: Buttondd): number {
         return readkey;
     }
 
