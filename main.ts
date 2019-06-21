@@ -195,15 +195,15 @@ namespace HaodaBit {
         return 999;
     }
 
-    //% advanced=true shim=maqueenIR::initIR
+    //% advanced=true shim=Mbit_IR::initIR
     function initIR(pin: Pins): void {
         return
     }
-    //% advanced=true shim=maqueenIR::onPressEvent
+    //% advanced=true shim=Mbit_IR::onPressEvent
     function onPressEvent(btn: RemoteButton, body: Action): void {
         return
     }
-    //% advanced=true shim=maqueenIR::getParam
+    //% advanced=true shim=Mbit_IR::getParam
     function getParam(): number {
         return 0
     }
@@ -607,7 +607,7 @@ namespace HaodaBit {
         return num;
     }
 
-    //% blockId=IR_read block="读红外的值在 %pin"
+    //% blockId=IR_read block="读红外的值"
     //% weight=100
     export function IR_read(): number {
         
