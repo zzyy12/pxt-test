@@ -208,11 +208,11 @@ namespace HaodaBit {
         return 0
     }
 
-    function haodabitInit(): void {
+    function haodabitInit(pin: number): void {
         if (alreadyInit == 1) {
             return
         }
-        initIR(Pins.P0)
+        initIR(pin)
         alreadyInit = 1
     }
 
@@ -607,11 +607,11 @@ namespace HaodaBit {
         return num;
     }
 
-    //% blockId=IR_read block="读红外的值"
+   //% blockId=IR_read block="读红外的值在 %pin"
     //% weight=100
-    export function IR_read(): number {
-        
-        haodabitInit()
+    export function IR_read(pin: Ports): number {
+        let port = PortDigital[pin]
+        haodabitInit(port)
         return getParam()
     }
 
