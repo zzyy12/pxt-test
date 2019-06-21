@@ -615,7 +615,7 @@ namespace HaodaBit {
         return getParam()
     }
 
-    //% blockId=IR_read block="红外按键| %readkey"
+    //% blockId=IR_KEY block="红外按键| %readkey"
     //% weight=100
     export function key_read(readkey: RemoteButton): number {
         return readkey;
