@@ -709,11 +709,10 @@ namespace HaodaBit {
 	    /**
      *  set the infrared LED pin.
      */
-    //% blockId=HaodaBit_setIR_pin block="设置红外发送在 %myPin" blockExternalInputs=false
+    //% blockId=HaodaBit_setIR_pin block="设置红外发送在 %port" blockExternalInputs=false
     //% weight=90
 	//% group="IR" weight=50
-    //% myPin.fieldEditor="gridpicker" myPin.fieldOptions.columns=4
-    //% myPin.fieldOptions.tooltips="false" myPin.fieldOptions.width="300"
+
     export function setIR_pin(port: Ports) {
 		let port = PortAnalog[pin]
         irLed = port;
