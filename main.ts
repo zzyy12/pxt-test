@@ -198,6 +198,11 @@ namespace HaodaBit {
         //% block=B值
         BB = 2
     }
+	export enum encodingType {
+        //% block="NEC"
+        NEC
+    }
+
 
     //% shim=HaodaBit::dht11Update
     function dht11Update(pin: number): number {
@@ -225,6 +230,12 @@ namespace HaodaBit {
         initIR(ppo)
         alreadyInit = 1
     }
+	    function transmitBit(highTime: number, lowTime: number): void {
+        pins.analogWritePin(irLed, 512);
+        control.waitMicros(highTime);
+        pins.analogWritePin(irLed, 0);
+        control.waitMicros(lowTime);
+    }
 
     /**
  * Well known colors for a NeoPixel strip
@@ -234,6 +245,11 @@ namespace HaodaBit {
     let dht11Temp = -1;
     let dht11Humi = -1;
     let alreadyInit = 0;
+    let irLed = AnalogPin.P16;
+    const pwmPeriod = 26;
+    pins.analogWritePin(irLed, 0);
+    pins.analogSetPeriod(irLed, pwmPeriod);
+    let init = false;
 
 
 
@@ -630,6 +646,95 @@ namespace HaodaBit {
 	//% group="IR" weight=50
     export function key_read(readkey: Buttondd): number {
         return readkey;
+    }
+	
+	    /**
+     *  set the infrared LED pin.
+     */
+    //% blockId=HaodaBit_setIR_pin block="设置红外接收在 %myPin" blockExternalInputs=false
+    //% weight=90
+	//% group="IR" weight=50
+    //% myPin.fieldEditor="gridpicker" myPin.fieldOptions.columns=4
+    //% myPin.fieldOptions.tooltips="false" myPin.fieldOptions.width="300"
+    export function setIR_pin(myPin: Ports) {
+		let pinm = PortAnalog[mypin];
+        irLed = pinm;
+        pins.analogWritePin(irLed, 0);
+        pins.analogSetPeriod(irLed, pwmPeriod);
+        init = true;
+    }
+	
+	    /**
+     * send message from IR LED. You must set the message encoding type, send how many times, and the message.
+     */
+    //% blockId=HaodaBit_sendMyMessage block="发送数据: %msg| ,%times| 次"
+    //% weight=50
+		//% group="IR" weight=50
+    export function sendMyMessage(msg: number, times: number): void {
+        if (init) {
+            //control.inBackground(() => {
+                sendMessage(msg, times, myType);
+            //})
+        }
+    }
+
+    function sendStart(): void {
+        transmitBit(9000, 4500);
+    }
+
+    function sendStop(): void {
+        transmitBit(560, 0);
+    }
+
+    function sendLow(): void {
+        transmitBit(560, 560);
+    }
+
+    function sendHigh(): void {
+        transmitBit(560, 1690);
+    }
+
+    function encode(myCode: number, bits: number, trueHigh: number, trueLow: number, falseHigh: number, falseLow: number): void {
+        const MESSAGE_BITS = bits;
+        for (let mask = 1 << (MESSAGE_BITS - 1); mask > 0; mask >>= 1) {
+            if (myCode & mask) {
+                transmitBit(trueHigh, trueLow);
+            } else {
+                transmitBit(falseHigh, falseLow);
+            }
+        }
+    }
+
+    function sendNEC(message: number, times: number): void {
+        const enum NEC {
+            startHigh = 9000,
+            startLow = 4500,
+            stopHigh = 560,
+            stopLow = 0,
+            trueHigh = 560,
+            trueLow = 1690,
+            falseHigh = 560,
+            falseLow = 560
+        }
+        //let address = Math.idiv(message, 0x010000)
+        let address = message >> 16;
+        let command = message % 0x010000;
+        const MESSAGE_BITS = 16;
+        for (let sendCount = 0; sendCount < times; sendCount++) {
+            transmitBit(NEC.startHigh, NEC.startLow);
+            encode(address, 16, NEC.trueHigh, NEC.trueLow, NEC.falseHigh, NEC.falseLow);
+            encode(command, 16, NEC.trueHigh, NEC.trueLow, NEC.falseHigh, NEC.falseLow);
+            transmitBit(NEC.stopHigh, NEC.stopLow);
+            if (times > 1)
+                control.waitMicros(19900);
+        }
+    }
+
+    export function sendMessage(message: number, times: number, myType: encodingType): void {
+        switch (myType) {
+            case encodingType.NEC: sendNEC(message, times);
+            default: sendNEC(message, times);
+        }
     }
 
 }
