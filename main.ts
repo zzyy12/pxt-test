@@ -248,7 +248,7 @@ namespace HaodaBit {
     let pwmPeriod = 26;
     pins.analogWritePin(irLed, 0);
     pins.analogSetPeriod(irLed, pwmPeriod);
-    let init = false;
+    let initddd = false;
 
 
 
@@ -708,19 +708,19 @@ namespace HaodaBit {
 	
 	    /**
      *  set the infrared LED pin.
-     
-    //% blockId=HaodaBit_setIR_pin block="设置红外发送在 %port" blockExternalInputs=false
+     	*/
+    //% blockId=HaodaBit_setIR_pin block="设置红外发送在 %port" 
     //% weight=90
 	//% group="IR" weight=50
 
-    export function setIR_pin(port: Ports) {
+    export function setIR_pin(port: Ports): void {
 		let port = PortAnalog[pin]
         irLed = port;
         pins.analogWritePin(irLed, 0);
         pins.analogSetPeriod(irLed, pwmPeriod);
-        init = true;
+        initddd = true;
     }
-	*/
+
 	 /**
      * send message from IR LED. You must set the message encoding type, send how many times, and the message.
     
@@ -728,7 +728,7 @@ namespace HaodaBit {
     //% weight=50
 	//% group="IR" weight=50
   export function sendMyMessage(msg: number, times: number, myType: encodingType): void {
-        if (init) {
+        if (initddd) {
             //control.inBackground(() => {
                 sendMessage(msg, times, myType);
             //})
