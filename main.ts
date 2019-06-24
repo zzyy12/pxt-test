@@ -723,7 +723,7 @@ namespace HaodaBit {
 	
 	 /**
      * send message from IR LED. You must set the message encoding type, send how many times, and the message.
-     */
+    
     //% blockId=HaodaBit_sendMyMessage block="红外发送数据: %msg|共%times| 次,编码类型:%myType"
     //% weight=50
 	//% group="IR" weight=50
@@ -734,67 +734,10 @@ namespace HaodaBit {
             //})
         }
     }
-
-    function sendStart(): void {
-        transmitBit(9000, 4500);
-    }
-
-    function sendStop(): void {
-        transmitBit(560, 0);
-    }
-
-    function sendLow(): void {
-        transmitBit(560, 560);
-    }
-
-    function sendHigh(): void {
-        transmitBit(560, 1690);
-    }
-
-    function encode(myCode: number, bits: number, trueHigh: number, trueLow: number, falseHigh: number, falseLow: number): void {
-        const MESSAGE_BITS = bits;
-        for (let mask = 1 << (MESSAGE_BITS - 1); mask > 0; mask >>= 1) {
-            if (myCode & mask) {
-                transmitBit(trueHigh, trueLow);
-            } else {
-                transmitBit(falseHigh, falseLow);
-            }
-        }
-    }
-
-    function sendNEC(message: number, times: number): void {
-        const enum NEC {
-            startHigh = 9000,
-            startLow = 4500,
-            stopHigh = 560,
-            stopLow = 0,
-            trueHigh = 560,
-            trueLow = 1690,
-            falseHigh = 560,
-            falseLow = 560
-        }
-        //let address = Math.idiv(message, 0x010000)
-        let address = message >> 16;
-        let command = message % 0x010000;
-        const MESSAGE_BITS = 16;
-        for (let sendCount = 0; sendCount < times; sendCount++) {
-            transmitBit(NEC.startHigh, NEC.startLow);
-            encode(address, 16, NEC.trueHigh, NEC.trueLow, NEC.falseHigh, NEC.falseLow);
-            encode(command, 16, NEC.trueHigh, NEC.trueLow, NEC.falseHigh, NEC.falseLow);
-            transmitBit(NEC.stopHigh, NEC.stopLow);
-            if (times > 1)
-                control.waitMicros(19900);
-        }
-    }
-
-     function sendMessage(message: number, times: number, myType: encodingType): void {
-        switch (myType) {
-            case encodingType.NEC: sendNEC(message, times);
-            default: sendNEC(message, times);
-        }
-    }
-
+ */
 }
+
+
 
 
 
