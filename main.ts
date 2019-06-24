@@ -708,7 +708,7 @@ namespace HaodaBit {
 	
 	    /**
      *  set the infrared LED pin.
-     */
+     
     //% blockId=HaodaBit_setIR_pin block="设置红外发送在 %port" blockExternalInputs=false
     //% weight=90
 	//% group="IR" weight=50
@@ -720,7 +720,7 @@ namespace HaodaBit {
         pins.analogSetPeriod(irLed, pwmPeriod);
         init = true;
     }
-	
+	*/
 	 /**
      * send message from IR LED. You must set the message encoding type, send how many times, and the message.
     
