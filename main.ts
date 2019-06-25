@@ -733,7 +733,7 @@ namespace HaodaBit {
   export function sendMyMessage(msg: number, times: number): void {
         if (initddd) {
             //control.inBackground(() => {
-                sendMessage(msg, times, NEC);
+                sendMessage(msg, times, encodingType.NEC);
             //})
         }
     }
