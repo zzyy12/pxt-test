@@ -727,13 +727,13 @@ namespace HaodaBit {
 	 /**
      * send message from IR LED. You must set the message encoding type, send how many times, and the message.
      */
-    //% blockId=HaodaBit_sendMyMessage block="红外发送数据: %msg|共%times| 次,编码类型:%myType"
+    //% blockId=HaodaBit_sendMyMessage block="红外发送数据: %msg|共%times| 次"
     //% weight=50
 	//% group="IR" weight=50
-  export function sendMyMessage(msg: number, times: number, myType: encodingType): void {
+  export function sendMyMessage(msg: number, times: number): void {
         if (initddd) {
             //control.inBackground(() => {
-                sendMessage(msg, times, myType);
+                sendMessage(msg, times, NEC);
             //})
         }
     }
