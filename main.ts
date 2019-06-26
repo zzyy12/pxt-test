@@ -49,6 +49,10 @@ namespace HaodaBit {
     const TCS34725Gain = 0x01
     const TCS34725_COMMAND_BIT = 0x80
     const TCS34725_ADDRESS = 0x29
+	
+	const N76E003AT20_ADDRESS = 0xa4
+	
+	
 
     // Auto-generated. Do not edit.
 
@@ -201,6 +205,12 @@ namespace HaodaBit {
 	export enum encodingType {
         NEC
     }
+	
+	export enum testline{
+		ss = 0x01,
+		dd = 0x00
+	}
+	
 
 
     //% shim=HaodaBit::dht11Update
@@ -519,10 +529,11 @@ namespace HaodaBit {
         serial.writeBuffer(buf)
     }
 
-    //% blockId="HaodaBit_read_line" block="读巡线传感器在 %sensor"
+    //% blockId="HaodaBit_read_line" block="读巡线传感器 %kg"
     //% weight=90
     //% group="Linefollower" weight=50
-    export function readLine(sensor: BBLineSensor): number {
+    export function readLine(kg: testline): number {
+		/**
         if (sensor == BBLineSensor.Right) {
             return pins.digitalReadPin(DigitalPin.P19);
         } else if (sensor == BBLineSensor.Left) {
@@ -530,6 +541,10 @@ namespace HaodaBit {
         } else {
             return 0;
         }
+		*/
+		
+		i2cWrite(N76E003AT20_ADDRESS, 0X03,kg);
+		basic.pause(3);
     }
 
 
@@ -625,6 +640,7 @@ namespace HaodaBit {
             return 0;
         }
     }
+	
 
 
     //% blockId=HaodaBit_TCS34725 block="读取颜色传感器 %pn"
