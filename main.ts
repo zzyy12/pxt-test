@@ -543,7 +543,7 @@ namespace HaodaBit {
         }
 		*/
 		
-		i2cWrite(N76E003AT20_ADDRESS, 0X03,kg);
+		i2cWrite(N76E003AT20_ADDRESS, 0x14,kg);
 		basic.pause(3);
     }
 
