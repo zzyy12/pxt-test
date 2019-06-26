@@ -532,7 +532,7 @@ namespace HaodaBit {
     //% blockId="HaodaBit_read_line" block="读巡线传感器 %kg"
     //% weight=90
     //% group="Linefollower" weight=50
-    export function readLine(kg: testline): number {
+    export function readLine(kg: testline): void {
 		/**
         if (sensor == BBLineSensor.Right) {
             return pins.digitalReadPin(DigitalPin.P19);
