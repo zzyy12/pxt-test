@@ -531,10 +531,10 @@ namespace HaodaBit {
         serial.writeBuffer(buf)
     }
 
-    //% blockId="HaodaBit_read_line" block="读巡线传感器 %kg"
+    //% blockId="HaodaBit_read_line" block="读巡线传感器"
     //% weight=90
     //% group="Linefollower" weight=50
-    export function readLine(kg: testline): void {
+    export function readLine(): void {
 		/**
         if (sensor == BBLineSensor.Right) {
             return pins.digitalReadPin(DigitalPin.P19);
