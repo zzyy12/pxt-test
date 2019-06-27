@@ -50,7 +50,7 @@ namespace HaodaBit {
     const TCS34725_COMMAND_BIT = 0x80
     const TCS34725_ADDRESS = 0x29
 	
-	const N76E003AT20_ADDRESS = 0xa4
+	const N76E003AT20_ADDRESS = 0xA4
 	const N76E003AT20_DATA1 = 0x16
 	const N76E003AT20_DATA2 = 0x08
 	
