@@ -279,6 +279,14 @@ namespace HaodaBit {
     let distanceBuf = 0;
     let initialized = false
     let tcs34725Initialised = false
+	
+	function i2cWrite_1(addr: number, reg: number, value: number, value1: number) {
+        let buf = pins.createBuffer(3)
+        buf[0] = reg
+        buf[1] = value
+		buf[2] = value1
+        pins.i2cWriteBuffer(addr, buf)
+    }
 
     function i2cWrite(addr: number, reg: number, value: number) {
         let buf = pins.createBuffer(2)
@@ -545,21 +553,21 @@ namespace HaodaBit {
         }
 		*/
 		
-		i2cWrite(N76E003AT20_ADDRESS, 0x03, N76E003AT20_DATA1);
-		
-		i2cWrite(N76E003AT20_ADDRESS, 0x05, N76E003AT20_DATA1);
+		i2cWrite_1(N76E003AT20_ADDRESS, 0x03, N76E003AT20_DATA1, N76E003AT20_DATA2);
 
-		i2cWrite(N76E003AT20_ADDRESS, 0x07, N76E003AT20_DATA1);
+		i2cWrite_1(N76E003AT20_ADDRESS, 0x05, N76E003AT20_DATA1, N76E003AT20_DATA2);
 
-		i2cWrite(N76E003AT20_ADDRESS, 0x09, N76E003AT20_DATA1);
+		i2cWrite_1(N76E003AT20_ADDRESS, 0x07, N76E003AT20_DATA1, N76E003AT20_DATA2);
 
-		i2cWrite(N76E003AT20_ADDRESS, 0x13, N76E003AT20_DATA1);
+		i2cWrite_1(N76E003AT20_ADDRESS, 0x09, N76E003AT20_DATA1, N76E003AT20_DATA2);
 
-		i2cWrite(N76E003AT20_ADDRESS, 0x14, N76E003AT20_DATA1);
+		i2cWrite_1(N76E003AT20_ADDRESS, 0x13, N76E003AT20_DATA1, N76E003AT20_DATA2);
 
-		i2cWrite(N76E003AT20_ADDRESS, 0x19, N76E003AT20_DATA1);
+		i2cWrite_1(N76E003AT20_ADDRESS, 0x14, N76E003AT20_DATA1, N76E003AT20_DATA2);
 
-		i2cWrite(N76E003AT20_ADDRESS, 0x16, N76E003AT20_DATA1);
+		i2cWrite_1(N76E003AT20_ADDRESS, 0x19, N76E003AT20_DATA1, N76E003AT20_DATA2);
+
+		i2cWrite_1(N76E003AT20_ADDRESS, 0x16, N76E003AT20_DATA1, N76E003AT20_DATA2);
 
 
 		basic.pause(3);
