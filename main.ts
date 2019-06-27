@@ -539,7 +539,7 @@ namespace HaodaBit {
         serial.writeBuffer(buf)
     }
 
-    //% blockId="HaodaBit_read_line" block="读巡线传感器"
+    //% blockId="HaodaBit_read_line" block="读巡线传感器1"
     //% weight=90
     //% group="Linefollower" weight=50
     export function readLine(): void {
@@ -570,7 +570,7 @@ namespace HaodaBit {
 		i2cWrite_1(N76E003AT20_ADDRESS, 0x16, N76E003AT20_DATA1, N76E003AT20_DATA2);
 
 
-		basic.pause(3);
+
     }
 
 
