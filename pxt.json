@@ -25,6 +25,7 @@
         "Adafruit_GFX.cpp",
         "Adafruit_GFX_Config.h",
         "glcdfont.h"
+		"enums2.d.ts",
 		
     ],
     "testFiles": [
