@@ -580,7 +580,7 @@ namespace HaodaBit {
 
 
 
-    }	*/
+    }
 	
 	 //% blockId="HaodaBit_read_line" block="读巡线传感器2"
     //% weight=90
@@ -588,7 +588,7 @@ namespace HaodaBit {
 	export function readLine(): void {
 		i2cRead(N76E003AT20_ADDRESS, 
 	}
-
+*/	
 
     function TCS34725_setIntegrationTime() {
         if (!tcs34725Initialised) { TCS34725_begin(); }
