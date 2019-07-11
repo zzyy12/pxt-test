@@ -547,7 +547,7 @@ namespace HaodaBit {
         buf[7] = 0xef;
         serial.writeBuffer(buf)
     }
-
+/**
     //% blockId="HaodaBit_set_height" block="设置巡线传感器高度"
     //% weight=90
     //% group="Linefollower" weight=50
@@ -560,7 +560,7 @@ namespace HaodaBit {
         } else {
             return 0;
         }
-		*/
+	
 		
 		i2cWrite(N76E003AT20_ADDRESS, 0x03, N76E003AT20_DATA1, N76E003AT20_DATA2);
 
@@ -580,7 +580,7 @@ namespace HaodaBit {
 
 
 
-    }
+    }	*/
 	
 	 //% blockId="HaodaBit_read_line" block="读巡线传感器2"
     //% weight=90
