@@ -24,7 +24,7 @@
         "Adafruit_GFX.h",
         "Adafruit_GFX.cpp",
         "Adafruit_GFX_Config.h",
-        "glcdfont.h",
+        "glcdfont.h"
 		
     ],
     "testFiles": [
