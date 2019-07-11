@@ -13,12 +13,18 @@
         "enums.d.ts",
 		"main.cpp",
         "ir.cpp",
-
+		"SSD1306_OLED.cpp",
         "ReceiverIR.cpp",
         "ReceiverIR.h",
         "RemoteIR.h",
 		"TransmitterIR.cpp",
-        "TransmitterIR.h"
+        "TransmitterIR.h",
+		"Adafruit_SSD1306.h",
+        "Adafruit_SSD1306.cpp",
+        "Adafruit_GFX.h",
+        "Adafruit_GFX.cpp",
+        "Adafruit_GFX_Config.h",
+        "glcdfont.h"
 
 		
     ],

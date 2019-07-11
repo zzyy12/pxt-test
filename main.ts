@@ -915,7 +915,98 @@ namespace HaodaBit {
         BMP280_I2C_ADDR = addr
     }
 	
+	    //% blockId=oled_init_terminal
+    //% weight=100
+    //% block="初始化 OLED 高度 %height|宽度 %width"
+    //% shim=OLED::init_terminal
+	//% group="OLED" blockGap=50
+    export function init(height: number, width: number): void {
+        return;
+    }
 
+    /**
+     *Prints Next Line
+     
+    //% blockId=oled_next_line
+    //% block="OLED 画一条线"
+    //% async
+    //% shim=OLED::NextLine
+	//% group="OLED" blockGap=50
+    export function nextLine(): void {
+        return;
+    }*/
+
+
+    /**
+     * clears the screen.
+     */
+    //% blockId=oled_clear_screen
+    //% block="OLED 清屏"
+    //% icon="\uf1ec" 
+    //% shim=OLED::clearDisplay
+	//% group="OLED" blockGap=50
+    export function clear(): void {
+        return;
+    }
+     /**
+      * prints a string on the OLED display
+      * @param text text to display, eg: "Hello, OLED!"
+      */
+     //% weight=92 blockGap=8
+     //% block="OLED显示字符串 %text" 
+     //% async
+     //% blockId=oled_print_stringNoNewLine
+     //% icon="\uf1ec"
+     //% shim=OLED::showStringNoNewLine
+	 //% group="OLED" blockGap=50
+     export function showStringNoNewLine(text: string): void {
+        console.log("display: " + text);
+        return;
+    }
+     /**
+      * prints a string on the OLED display
+      * @param text text to display, eg: "Hello, OLED!"
+      
+     //% weight=94 blockGap=8
+     //% block="show|string %text" 
+     //% async
+     //% blockId=oled_print_stringWithNewLine
+     //% icon="\uf1ec"
+     //% shim=OLED::showStringWithNewLine
+	 //% group="OLED" blockGap=50
+     export function showStringWithNewLine(text: string): void {
+        console.log("display: " + text);
+        return;
+    }*/
+
+    /**
+     * prints a number on the OLED display without a newline
+     * @param number number to display 
+     */
+    //% weight=93
+    //% blockId=oled_print_number
+    //% block="OLED显示数字 %number" 
+    //% async 
+    //% shim=OLED::showNumberWithoutNewLine
+	//% group="OLED" blockGap=50
+    export function showNumberNoNewLine(number: number): void {
+        console.log("display: " + number);
+        return;
+    }
+    /**
+     * prints a number on the OLED display with a newline
+     * @param number number to display 
+     
+    //% weight=95
+    //% blockId=oled_print_number1
+    //% block="show|number %number" blockGap=8
+    //% async 
+    //% shim=OLED::showNumberWithNewLine
+	//% group="OLED" blockGap=50
+    export function showNumberWithNewLine(number: number): void {
+        console.log("display: " + number);
+        return;
+    }*/
 	
 
 }
