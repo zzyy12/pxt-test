@@ -801,7 +801,7 @@ namespace HaodaBit {
         }
     }
 	
-	/**
+	
 	function setreg(reg: number, dat: number): void {
         let buf = pins.createBuffer(2);
         buf[0] = reg;
@@ -865,56 +865,56 @@ namespace HaodaBit {
 
     /**
      * get pressure
-     
+     */
     //% blockId="BMP280_GET_PRESSURE" block="BMP280 获取气压值"
     //% weight=80
 	//% group="Environment" blockGap=50
     export function pressure(): number {
         get();
         return P;
-    }*/
+    }
 
     /**
      * get temperature
-    
+    */
     //% blockId="BMP280_GET_TEMPERATURE" block="BMP280 获取温度值"
     //% weight=80
 	//% group="Environment" blockGap=50
     export function temperature(): number {
         get();
         return T;
-    } */
+    } 
 
     /**
      * power on
-    
+    */
     //% blockId="BMP280_POWER_ON" block="BMP280 打开"
     //% weight=80 
 	//% group="Environment" blockGap=50
     export function PowerOn() {
         setreg(0xF4, 0x2F)
-    } */
+    } 
 
     /**
      * power off
-    
+     */
     //% blockId="BMP280_POWER_OFF" block="BMP280 关闭"
     //% weight=80 
 	//% group="Environment" blockGap=50
     export function PowerOff() {
         setreg(0xF4, 0)
     }
- */
+
     /**
      * set I2C address
-     
+     */
     //% blockId="BMP280_SET_ADDRESS" block="BMP280设置地址 %addr"
     //% weight=80
 	//% group="Environment" blockGap=50
     export function Address(addr: BMP280_I2C_ADDRESS) {
         BMP280_I2C_ADDR = addr
     }
-	*/
+	
 
 }
 
