@@ -288,6 +288,7 @@ namespace HaodaBit {
     let distanceBuf = 0;
     let initialized = false
     let tcs34725Initialised = false
+	let I2C_WRITE = 0;
 	
 	function i2cWrite_1(addr: number, reg: number, value: number, value1: number) {
         let buf = pins.createBuffer(3)
@@ -547,7 +548,7 @@ namespace HaodaBit {
         buf[7] = 0xef;
         serial.writeBuffer(buf)
     }
-/**
+
     //% blockId="HaodaBit_set_height" block="设置巡线传感器高度"
     //% weight=90
     //% group="Linefollower" weight=50
@@ -560,28 +561,29 @@ namespace HaodaBit {
         } else {
             return 0;
         }
-	
+	*/
 		
-		i2cWrite(N76E003AT20_ADDRESS, 0x03, N76E003AT20_DATA1, N76E003AT20_DATA2);
+		i2cWrite_1(N76E003AT20_ADDRESS | I2C_WRITE, 0x03, N76E003AT20_DATA1, N76E003AT20_DATA2);
+		
 
-		i2cWrite_1(N76E003AT20_ADDRESS, 0x05, N76E003AT20_DATA1, N76E003AT20_DATA2);
+		i2cWrite_1(N76E003AT20_ADDRESS | I2C_WRITE, 0x05, N76E003AT20_DATA1, N76E003AT20_DATA2);
 
-		i2cWrite_1(N76E003AT20_ADDRESS, 0x07, N76E003AT20_DATA1, N76E003AT20_DATA2);
+		i2cWrite_1(N76E003AT20_ADDRESS | I2C_WRITE, 0x07, N76E003AT20_DATA1, N76E003AT20_DATA2);
 
-		i2cWrite_1(N76E003AT20_ADDRESS, 0x09, N76E003AT20_DATA1, N76E003AT20_DATA2);
+		i2cWrite_1(N76E003AT20_ADDRESS | I2C_WRITE, 0x09, N76E003AT20_DATA1, N76E003AT20_DATA2);
 
-		i2cWrite_1(N76E003AT20_ADDRESS, 0x13, N76E003AT20_DATA1, N76E003AT20_DATA2);
+		i2cWrite_1(N76E003AT20_ADDRESS | I2C_WRITE, 0x13, N76E003AT20_DATA1, N76E003AT20_DATA2);
 
-		i2cWrite_1(N76E003AT20_ADDRESS, 0x14, N76E003AT20_DATA1, N76E003AT20_DATA2);
+		i2cWrite_1(N76E003AT20_ADDRESS | I2C_WRITE, 0x14, N76E003AT20_DATA1, N76E003AT20_DATA2);
 
-		i2cWrite_1(N76E003AT20_ADDRESS, 0x19, N76E003AT20_DATA1, N76E003AT20_DATA2);
+		i2cWrite_1(N76E003AT20_ADDRESS | I2C_WRITE, 0x19, N76E003AT20_DATA1, N76E003AT20_DATA2);
 
-		i2cWrite_1(N76E003AT20_ADDRESS, 0x16, N76E003AT20_DATA1, N76E003AT20_DATA2);
+		i2cWrite_1(N76E003AT20_ADDRESS | I2C_WRITE, 0x16, N76E003AT20_DATA1, N76E003AT20_DATA2);
 
 
 
     }
-	
+/**	
 	 //% blockId="HaodaBit_read_line" block="读巡线传感器2"
     //% weight=90
     //% group="Linefollower" weight=50
@@ -915,26 +917,26 @@ namespace HaodaBit {
         BMP280_I2C_ADDR = addr
     }
 	
-	    //% blockId=oled_init_terminal
+	//% blockId=oled_init_terminal
     //% weight=100
     //% block="初始化 OLED 高度 %height|宽度 %width"
     //% shim=OLED::init_terminal
 	//% group="OLED" blockGap=50
-    export function init(height: number, width: number): void {
+    export function init(height: number = 64, width: number = 128): void {
         return;
     }
 
     /**
      *Prints Next Line
-     
+     */
     //% blockId=oled_next_line
-    //% block="OLED 画一条线"
+    //% block="OLED 换行"
     //% async
     //% shim=OLED::NextLine
 	//% group="OLED" blockGap=50
     export function nextLine(): void {
         return;
-    }*/
+    }
 
 
     /**
@@ -980,8 +982,8 @@ namespace HaodaBit {
     }*/
 
     /**
-     * prints a number on the OLED display without a newline
-     * @param number number to display 
+     * prints a number on tthe OLED display without a newline
+     * @param number number o display 
      */
     //% weight=93
     //% blockId=oled_print_number
@@ -993,20 +995,10 @@ namespace HaodaBit {
         console.log("display: " + number);
         return;
     }
-    /**
-     * prints a number on the OLED display with a newline
-     * @param number number to display 
-     
-    //% weight=95
-    //% blockId=oled_print_number1
-    //% block="show|number %number" blockGap=8
-    //% async 
-    //% shim=OLED::showNumberWithNewLine
-	//% group="OLED" blockGap=50
-    export function showNumberWithNewLine(number: number): void {
-        console.log("display: " + number);
-        return;
-    }*/
+
+
+	
+
 	
 
 }
