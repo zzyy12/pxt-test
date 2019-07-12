@@ -548,12 +548,12 @@ namespace HaodaBit {
         buf[7] = 0xef;
         serial.writeBuffer(buf)
     }
-
+/**
     //% blockId="HaodaBit_set_height" block="设置巡线传感器高度"
     //% weight=90
     //% group="Linefollower" weight=50
     export function readLine(): void {
-		/**
+		
         if (sensor == BBLineSensor.Right) {
             return pins.digitalReadPin(DigitalPin.P19);
         } else if (sensor == BBLineSensor.Left) {
@@ -561,7 +561,7 @@ namespace HaodaBit {
         } else {
             return 0;
         }
-	*/
+	
 		
 		i2cWrite_1(N76E003AT20_ADDRESS | I2C_WRITE, 0x03, N76E003AT20_DATA1, N76E003AT20_DATA2);
 		
@@ -582,7 +582,7 @@ namespace HaodaBit {
 
 
 
-    }
+    }*/
 /**	
 	 //% blockId="HaodaBit_read_line" block="读巡线传感器2"
     //% weight=90
