@@ -916,7 +916,7 @@ namespace HaodaBit {
     export function Address(addr: BMP280_I2C_ADDRESS) {
         BMP280_I2C_ADDR = addr
     }
-	/**
+	/***/
 	//% blockId=oled_init_terminal
     //% weight=100
     //% block="初始化 OLED 高度 %height|宽度 %width"
@@ -925,11 +925,11 @@ namespace HaodaBit {
 	
     export function init(height: number = 64, width: number = 128): void {
         return;
-    }*/
+    }
 
     /**
      *Prints Next Line
-     
+     */
     //% blockId=oled_next_line
     //% block="OLED 换行"
     //% async
@@ -938,11 +938,11 @@ namespace HaodaBit {
     export function nextLine(): void {
         return;
     }
-*/
+
 
     /**
      * clears the screen.
-     
+     */
     //% blockId=oled_clear_screen
     //% block="OLED 清屏"
     //% icon="\uf1ec" 
@@ -950,11 +950,11 @@ namespace HaodaBit {
 	//% group="OLED" blockGap=50
     export function clear(): void {
         return;
-    }*/
+    }
      /**
       * prints a string on the OLED display
       * @param text text to display, eg: "Hello, OLED!"
-      
+      */
      //% weight=92 blockGap=8
      //% block="OLED显示字符串 %text" 
      //% async
@@ -965,7 +965,7 @@ namespace HaodaBit {
      export function showStringNoNewLine(text: string): void {
         console.log("display: " + text);
         return;
-    }*/
+    }
      /**
       * prints a string on the OLED display
       * @param text text to display, eg: "Hello, OLED!"
@@ -985,7 +985,7 @@ namespace HaodaBit {
     /**
      * prints a number on tthe OLED display without a newline
      * @param number number o display 
-     
+     */
     //% weight=93
     //% blockId=oled_print_number
     //% block="OLED显示数字 %number" 
@@ -996,7 +996,7 @@ namespace HaodaBit {
         console.log("display: " + number);
         return;
     }
-*/
+
 
 	
 
